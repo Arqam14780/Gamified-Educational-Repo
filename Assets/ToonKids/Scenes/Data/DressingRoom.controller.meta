@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 936708f289c993544a55f4e692e6ef02
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scenes/Data/DressingRoom.controller
+  uploadId: 690037

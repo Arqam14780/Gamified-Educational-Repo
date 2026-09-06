@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8a42e2ad8def14e4dbe0420ade0ec61b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scripts/TKGirlPrefabMaker_VR.cs
+  uploadId: 690037

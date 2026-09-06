@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4b0921f542bf20d46aa60f514946130d
+timeCreated: 1552334246
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scenes/Data/Materials/floor.mat
+  uploadId: 690037

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: fa06170fb02ff504ab88decf07305de1
+timeCreated: 1553717737
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/GIRL/skin & hairs/TKGirlB02.mat
+  uploadId: 690037

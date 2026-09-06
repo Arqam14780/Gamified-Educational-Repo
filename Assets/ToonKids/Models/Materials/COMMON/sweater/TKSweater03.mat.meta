@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a60a2b0985f910e4385dfec7c86d435f
+timeCreated: 1553201030
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/sweater/TKSweater03.mat
+  uploadId: 690037

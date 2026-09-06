@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6c463a5335a75a04890e95f2a4a990fe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scripts/TKDressingRoom.cs
+  uploadId: 690037

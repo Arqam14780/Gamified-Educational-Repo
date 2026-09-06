@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dd5dfbc861ba6fd4aa92bd0fa55ab529
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scripts/TK3DController.controller
+  uploadId: 690037

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 32f7df89b7e5431449b375b429530b12
+timeCreated: 1553174367
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/feetA/TKFeetA10.mat
+  uploadId: 690037

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 20560e57601db9341a2f65bce89b11bd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scenes/Data/TedyBear/TeddyBear.cs
+  uploadId: 690037

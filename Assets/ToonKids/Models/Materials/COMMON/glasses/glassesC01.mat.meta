@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: aa62802dfb173784b8325afbe0f961f4
+timeCreated: 1553172618
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/glasses/glassesC01.mat
+  uploadId: 690037

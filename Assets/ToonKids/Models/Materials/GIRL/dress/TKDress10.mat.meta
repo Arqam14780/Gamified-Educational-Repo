@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a3c56d0d7b18d354ba1642d3d5f80552
+timeCreated: 1553173148
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/GIRL/dress/TKDress10.mat
+  uploadId: 690037

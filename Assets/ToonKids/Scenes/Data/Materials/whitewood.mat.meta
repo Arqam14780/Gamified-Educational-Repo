@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 861686a12028b124a9851fb578c5fcc0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scenes/Data/Materials/whitewood.mat
+  uploadId: 690037

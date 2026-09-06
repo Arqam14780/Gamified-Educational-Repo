@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a3eebf9b617efb1429298d010fc8f5b1
+timeCreated: 1553173428
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/legs/TKLegs08.mat
+  uploadId: 690037

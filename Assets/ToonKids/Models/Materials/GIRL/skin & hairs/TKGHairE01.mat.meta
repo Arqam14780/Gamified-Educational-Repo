@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 13a4bf0a194e8f64f8bc1006b2c22b27
+timeCreated: 1552333702
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/GIRL/skin & hairs/TKGHairE01.mat
+  uploadId: 690037

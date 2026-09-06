@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1935a60790c056a4a94bfdb8739828f7
+timeCreated: 1553200793
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/shirt/TKShirt09.mat
+  uploadId: 690037

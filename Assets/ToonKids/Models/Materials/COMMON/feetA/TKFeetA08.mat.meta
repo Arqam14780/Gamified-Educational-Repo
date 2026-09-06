@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d35df8a691c6581458d763945db593c1
+timeCreated: 1553174367
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/feetA/TKFeetA08.mat
+  uploadId: 690037

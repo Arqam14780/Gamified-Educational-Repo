@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 119daa1d91fd6f946a9eb93be3fc1cb8
+timeCreated: 1553173428
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/legs/TKLegs13.mat
+  uploadId: 690037

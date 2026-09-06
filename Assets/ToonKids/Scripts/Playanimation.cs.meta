@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3f4e588b41d242240819e4dd4525b20b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scripts/Playanimation.cs
+  uploadId: 690037

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 370ff5ad25b98054887b39e37c22038f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Scenes/Data/CameraPoses.controller
+  uploadId: 690037

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6698831a72e6ea5489bb11b4ad2c4704
+timeCreated: 1552578968
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/BOY/skin & hairs/TKBHairE02.mat
+  uploadId: 690037

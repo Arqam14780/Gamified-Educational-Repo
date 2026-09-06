@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ea33cf4c8b3bab544a01bbfd7073188f
+timeCreated: 1553174567
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/feetB/TKFeetB06.mat
+  uploadId: 690037

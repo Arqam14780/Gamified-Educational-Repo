@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0d7ab664c4f4baf4388e83b4a103feff
+timeCreated: 1552337944
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 55945
+  packageName: Toon kids
+  packageVersion: 4.2
+  assetPath: Assets/ToonKids/Models/Materials/COMMON/hats/TKHatA01.mat
+  uploadId: 690037
