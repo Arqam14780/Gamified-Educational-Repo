@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace AR
 {
@@ -40,6 +41,7 @@ namespace AR
         public void Play()
         {
             PlayerPrefs.SetInt("ChildIndex", currentActiveChild);
+            SceneManager.LoadScene(SceneManager.loadedSceneCount);
         }
 
 
