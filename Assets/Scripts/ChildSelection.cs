@@ -22,7 +22,7 @@ namespace AR
 
         private void Start()
         {
-            currentActiveChild = PlayerPrefs.GetInt("ChildIndex", 0);
+            currentActiveChild = Mathf.Clamp(PlayerPrefs.GetInt("ChildIndex", 0), 0, children.Count - 1);
             children[currentActiveChild].SetActive(true);
             childSelectionUI[currentActiveChild].SetActive(true);
         }
@@ -41,7 +41,8 @@ namespace AR
         public void Play()
         {
             PlayerPrefs.SetInt("ChildIndex", currentActiveChild);
-            SceneManager.LoadScene(SceneManager.loadedSceneCount);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("StudyRoom");
         }
 
 
