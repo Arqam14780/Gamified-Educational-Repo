@@ -1,0 +1,1 @@
+PASS: six frame/border raycasts; bundled images and original PDFs; image reader; PDF next/previous and page bounds; zoom; reading pause state; both linked quizzes; duplicate answer protection; results/retry/close. Native Windows PDF parser separately confirmed both PDFs have two pages.
