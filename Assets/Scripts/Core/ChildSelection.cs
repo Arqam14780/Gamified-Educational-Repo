@@ -6,8 +6,6 @@ namespace AR
 {
     public class ChildSelection : MonoBehaviour
     {
-        public GameObject[] childSelectionUI;
-
         private List<GameObject> children = new List<GameObject>();
         private int currentActiveChild = 0;
 
@@ -17,23 +15,26 @@ namespace AR
             {
                 child.gameObject.SetActive(false);
                 children.Add(child.gameObject);
+                AcademyCharacterMaterials.Prepare(child.gameObject);
             }
         }
 
         private void Start()
         {
+            if (children.Count == 0) { Debug.LogError("Add learner models to ChildSelection.", this); return; }
             currentActiveChild = Mathf.Clamp(PlayerPrefs.GetInt("ChildIndex", 0), 0, children.Count - 1);
             children[currentActiveChild].SetActive(true);
-            childSelectionUI[currentActiveChild].SetActive(true);
+            var menu = FindFirstObjectByType<AcademyMenu>();
+            if (menu != null) menu.Initialize(this, currentActiveChild);
+            else Debug.LogError("MainMenu needs its saved Academy UI. Use Tools > Academy > Save menu UI to scene.", this);
         }
 
         public void SelectChild(int num)
         {
+            if (num < 0 || num >= children.Count) return;
             children[currentActiveChild].SetActive(false);
-            childSelectionUI[currentActiveChild].SetActive(false);
 
             children[num].SetActive(true);
-            childSelectionUI[num].SetActive(true);
 
             currentActiveChild = num;
         }
@@ -44,6 +45,7 @@ namespace AR
             PlayerPrefs.Save();
             SceneManager.LoadScene("StudyRoom");
         }
+
 
 
     }

@@ -13,8 +13,9 @@ namespace AR
     public sealed class StudyRoom : MonoBehaviour
     {
         private Vector3 origin = new Vector3(1000, 0, 1000);
-        private readonly Color ink = new Color(.10f, .16f, .25f);
-        private readonly Color teal = new Color(.08f, .52f, .49f);
+        private readonly Color teal = AcademyUI.Teal;
+        private int firstLesson;
+        private StudyRoomEnvironment environment;
         private Font font;
         private Transform player;
         private CharacterController controller;
@@ -24,6 +25,7 @@ namespace AR
         private Text heading, progress, question, feedback, best;
         private readonly Button[] answers = new Button[4];
         private Button next;
+        private Image quizProgress;
         private string subject;
         private StudyQuestion[] questions;
         private int index, score;
@@ -69,7 +71,7 @@ namespace AR
 
         private void BuildRoom()
         {
-            var environment = FindFirstObjectByType<StudyRoomEnvironment>();
+            environment = FindFirstObjectByType<StudyRoomEnvironment>();
             if (environment == null)
             {
                 var prefab = Resources.Load<GameObject>("StudyGallery");
@@ -82,6 +84,12 @@ namespace AR
                 }
             }
             origin = environment.transform.position;
+            RefreshFrames();
+        }
+
+        private void RefreshFrames()
+        {
+            environment.DisplayLessons(lessonCatalog, firstLesson);
             foreach (var frame in environment.GetComponentsInChildren<StudyFrame>())
             {
                 var target = frame;
@@ -97,12 +105,15 @@ namespace AR
         {
             var obj=new GameObject("Label",typeof(RectTransform),typeof(Text)); Rect(obj,parent,new Vector2(.5f,.5f),position,size);
             var text=obj.GetComponent<Text>(); text.text=value; text.font=font; text.fontSize=fontSize; text.color=color;
-            text.alignment=TextAnchor.MiddleCenter; text.raycastTarget=false; return text;
+            text.alignment=TextAnchor.MiddleCenter; text.raycastTarget=false;
+            text.resizeTextForBestFit=true; text.resizeTextMinSize=16; text.resizeTextMaxSize=fontSize;
+            return text;
         }
         private Button MakeButton(Transform parent,string value,Vector2 pos,Vector2 size,Action click)
         {
             var obj=new GameObject(value,typeof(RectTransform),typeof(Image),typeof(Button)); Rect(obj,parent,new Vector2(.5f,.5f),pos,size);
             obj.GetComponent<Image>().color=teal; var button=obj.GetComponent<Button>(); button.onClick.AddListener(()=>click());
+            AcademyUI.StyleButton(button);
             Label(obj.transform,value,Vector2.zero,size-Vector2.one*8,23,Color.white); return button;
         }
         private void BuildUI()
@@ -111,18 +122,34 @@ namespace AR
             var obj=new GameObject("Study UI",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster)); obj.transform.SetParent(transform);
             canvas=obj.GetComponent<Canvas>(); canvas.renderMode=RenderMode.ScreenSpaceOverlay; canvas.sortingOrder=50;
             var scaler=obj.GetComponent<CanvasScaler>(); scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize; scaler.referenceResolution=new Vector2(1280,800); scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
-            var banner=Label(canvas.transform,"STUDY GALLERY  /  Look, read, then try a quiz",new Vector2(-90,-42),new Vector2(800,55),26,Color.white);
+            var header=new GameObject("Academy header",typeof(RectTransform),typeof(Image));
+            Rect(header,canvas.transform,new Vector2(.5f,1),new Vector2(0,-64),new Vector2(1230,108));
+            AcademyUI.Style(header.GetComponent<Image>(),AcademyUI.Navy);
+            var banner=Label(canvas.transform,"LEARNING ACADEMY   /   Explore your classroom",new Vector2(-90,-42),new Vector2(800,55),26,Color.white);
             banner.rectTransform.anchorMin=banner.rectTransform.anchorMax=new Vector2(.5f,1);
             best=Label(canvas.transform,"",new Vector2(-90,-86),new Vector2(800,35),20,Color.white); best.rectTransform.anchorMin=best.rectTransform.anchorMax=new Vector2(.5f,1); RefreshBest();
-            var hint=Label(canvas.transform,"WASD: move   /   Hold right mouse: look",new Vector2(0,30),new Vector2(650,40),20,Color.white);
+            var footer=new GameObject("Control hint background",typeof(RectTransform),typeof(Image));
+            Rect(footer,canvas.transform,new Vector2(.5f,0),new Vector2(0,35),new Vector2(740,48));
+            AcademyUI.Style(footer.GetComponent<Image>(),AcademyUI.Navy);
+            var hint=Label(canvas.transform,"WASD / arrows: move   |   Right-drag: look   |   Click a frame",new Vector2(0,35),new Vector2(730,40),19,Color.white);
             hint.rectTransform.anchorMin=hint.rectTransform.anchorMax=new Vector2(.5f,0);
             var menu=MakeButton(canvas.transform,"Characters",new Vector2(-110,-42),new Vector2(180,48),()=>SceneManager.LoadScene("MainMenu"));
             var mr=menu.GetComponent<RectTransform>(); mr.anchorMin=mr.anchorMax=Vector2.one;
+            if(lessonCatalog.lessons.Length>2)
+            {
+                var more=MakeButton(canvas.transform,"Next subjects >",new Vector2(-110,-91),new Vector2(180,36),()=>
+                {
+                    if(IsOverlayOpen)return;
+                    firstLesson=(firstLesson+2)>=lessonCatalog.lessons.Length?0:firstLesson+2;
+                    RefreshFrames(); RefreshBest();
+                });
+                more.GetComponent<RectTransform>().anchorMin=more.GetComponent<RectTransform>().anchorMax=Vector2.one;
+            }
             Direction("^",new Vector2(110,185),Vector2.up); Direction("v",new Vector2(110,65),Vector2.down);
             Direction("<",new Vector2(45,125),Vector2.left); Direction(">",new Vector2(175,125),Vector2.right);
             var lookPad = new GameObject("Touch look pad", typeof(RectTransform), typeof(Image), typeof(StudyLookPad));
             Rect(lookPad, canvas.transform, new Vector2(1,0), new Vector2(-120,115), new Vector2(195,150));
-            lookPad.GetComponent<Image>().color = new Color(0,0,0,.25f);
+            AcademyUI.Style(lookPad.GetComponent<Image>(),new Color(.07f,.14f,.22f,.82f));
             Label(lookPad.transform,"DRAG TO LOOK",Vector2.zero,new Vector2(190,140),19,Color.white);
             lookPad.GetComponent<StudyLookPad>().Look = delta =>
             {
@@ -133,8 +160,16 @@ namespace AR
             modal=new GameObject("Quiz overlay",typeof(RectTransform),typeof(Image)); var overlay=Rect(modal,canvas.transform,new Vector2(.5f,.5f),Vector2.zero,Vector2.zero);
             overlay.anchorMin=Vector2.zero; overlay.anchorMax=Vector2.one; overlay.offsetMin=overlay.offsetMax=Vector2.zero; modal.GetComponent<Image>().color=new Color(.02f,.03f,.05f,.48f);
             var card=new GameObject("Quiz card",typeof(RectTransform),typeof(Image)); Rect(card,modal.transform,new Vector2(.5f,.5f),Vector2.zero,new Vector2(620,620)); card.GetComponent<Image>().color=new Color(.025f,.035f,.055f,.94f);
+            AcademyUI.Style(card.GetComponent<Image>(),AcademyUI.Navy);
             heading=Label(card.transform,"",new Vector2(0,255),new Vector2(500,45),32,Color.white);
             progress=Label(card.transform,"",new Vector2(0,205),new Vector2(530,35),19,new Color(.40f,.85f,.82f));
+            var track=new GameObject("Quiz progress track",typeof(RectTransform),typeof(Image));
+            Rect(track,card.transform,Vector2.one*.5f,new Vector2(0,176),new Vector2(530,5));
+            track.GetComponent<Image>().color=new Color(.18f,.28f,.35f);
+            var fill=new GameObject("Quiz progress",typeof(RectTransform),typeof(Image));
+            Rect(fill,track.transform,new Vector2(0,.5f),Vector2.zero,new Vector2(530,5));
+            fill.GetComponent<RectTransform>().pivot=new Vector2(0,.5f);
+            quizProgress=fill.GetComponent<Image>(); quizProgress.color=new Color(.38f,.81f,.73f);
             question=Label(card.transform,"",new Vector2(0,125),new Vector2(550,100),30,Color.white);
             for(int i=0;i<4;i++) { int answer=i; answers[i]=MakeButton(card.transform,"",new Vector2(i%2==0?-145:145,20-i/2*78),new Vector2(265,62),()=>Answer(answer)); }
             feedback=Label(card.transform,"",new Vector2(0,-135),new Vector2(550,70),23,Color.white);
@@ -214,14 +249,16 @@ namespace AR
         private void ShowQuestion()
         {
             answered=false; heading.text=subject+" Quiz"; progress.text="Question "+(index+1)+" / "+questions.Length+"   |   Score: "+score;
+            quizProgress.rectTransform.sizeDelta=new Vector2(530f*(index+1)/questions.Length,5);
             question.text=questions[index].prompt; feedback.text="Choose one answer."; next.gameObject.SetActive(false);
-            for(int i=0;i<answers.Length;i++) { answers[i].gameObject.SetActive(true); answers[i].interactable=true; answers[i].GetComponent<Image>().color=teal; answers[i].GetComponentInChildren<Text>().text=questions[index].options[i]; }
+            for(int i=0;i<answers.Length;i++) { answers[i].gameObject.SetActive(true); answers[i].interactable=true; answers[i].GetComponent<Image>().color=teal; answers[i].GetComponentInChildren<Text>().text=((char)('A'+i))+".  "+questions[index].options[i]; }
         }
         private void Answer(int selected)
         {
             if(answered) return; answered=true; bool correct=selected==questions[index].correct; if(correct) score++;
             feedback.text=(correct?"Correct! Great job!":"Correct answer: "+questions[index].options[questions[index].correct])+"\n"+questions[index].source;
             for(int i=0;i<answers.Length;i++) { answers[i].interactable=false; if(i==questions[index].correct) answers[i].GetComponent<Image>().color=new Color(.2f,.65f,.3f); }
+            if(!correct) answers[selected].GetComponent<Image>().color=new Color(.65f,.25f,.25f);
             next.GetComponentInChildren<Text>().text=index==questions.Length-1?"See results":"Next question"; next.gameObject.SetActive(true);
         }
         private void Next()
@@ -236,8 +273,17 @@ namespace AR
             foreach(var button in answers) button.gameObject.SetActive(false); next.GetComponentInChildren<Text>().text="Try again";
         }
         private void CloseQuiz() { if(modal!=null) modal.SetActive(false); touchMove=Vector2.zero; }
-        private void RefreshBest() { best.text="Personal best   |   Math "+PlayerPrefs.GetInt("StudyRoom.Best.Math",0)+"/5   |   English "+PlayerPrefs.GetInt("StudyRoom.Best.English",0)+"/5"; }
+        private void RefreshBest()
+        {
+            best.text="PERSONAL BEST";
+            for(int i=firstLesson;i<Mathf.Min(firstLesson+2,lessonCatalog.lessons.Length);i++)
+            {
+                var lesson=lessonCatalog.lessons[i];
+                best.text+="   |   "+lesson.subject+" "+Mathf.Min(lesson.questions.Length,PlayerPrefs.GetInt("StudyRoom.Best."+lesson.subject,0))+" / "+lesson.questions.Length;
+            }
+        }
         private void OnApplicationFocus(bool focused) { if(!focused) touchMove=Vector2.zero; }
+        private void OnDestroy() { StudyContent.Release(); }
     }
 }
 

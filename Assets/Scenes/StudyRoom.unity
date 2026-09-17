@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.78, g: 0.85, b: 0.94, a: 1}
+  m_AmbientEquatorColor: {r: 0.56, g: 0.64, b: 0.65, a: 1}
+  m_AmbientGroundColor: {r: 0.32, g: 0.28, b: 0.24, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -33555,7 +33555,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -63755,7 +63755,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.11325261, y: 0.04468473, z: -0.000013574958}
     m_Extent: {x: 0.13753223, y: 0.10973138, z: 0.2768566}
   m_DirtyAABB: 0
---- !u!1001 &7476156015083319555
+--- !u!1001 &3534882262324606080
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63765,7 +63765,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5029140380806100152, guid: fff0f142170427647bc79a10f5ba94de, type: 3}
       propertyPath: m_Name
-      value: Study Gallery
+      value: Learning Academy Environment
       objectReference: {fileID: 0}
     - target: {fileID: 5928124770672727102, guid: fff0f142170427647bc79a10f5ba94de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63820,4 +63820,4 @@ SceneRoots:
   - {fileID: 1523788947}
   - {fileID: 875038785}
   - {fileID: 1097728650}
-  - {fileID: 7476156015083319555}
+  - {fileID: 3534882262324606080}

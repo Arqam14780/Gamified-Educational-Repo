@@ -46,7 +46,7 @@ namespace AR
             zoomOut=Button(card,"-",new Vector2(120,-288),new Vector2(50,44),()=>SetZoom(zoom-.5f));
             Button(card,"Fit",new Vector2(187,-288),new Vector2(70,44),()=>SetZoom(1));
             zoomIn=Button(card,"+",new Vector2(254,-288),new Vector2(50,44),()=>SetZoom(zoom+.5f));
-            Label(card,"This frame contains only this material. Close to return to the room.",new Vector2(0,-337),new Vector2(900,36),18,new Color(.74f,.83f,.87f));
+            Label(card,"Take your time. Zoom in to explore, then return to the classroom.",new Vector2(0,-337),new Vector2(900,36),18,AcademyUI.Muted);
             gameObject.SetActive(false);
         }
 
@@ -76,11 +76,13 @@ namespace AR
         {
             int count=kind==StudyFrameKind.Image?1:lesson.pdfPages.Length;
             string path=kind==StudyFrameKind.Image?lesson.imageResource:lesson.pdfPages[page];
-            picture.texture=Resources.Load<Texture2D>(path);
+            picture.texture=StudyContent.Texture(path);
             notice.text=picture.texture==null?"This learning page is unavailable.":"";
             picture.enabled=picture.texture!=null;
             pageLabel.text=kind==StudyFrameKind.Image?"Image lesson":"PDF page "+(page+1)+" / "+count;
             previous.interactable=page>0; next.interactable=page<count-1;
+            previous.gameObject.SetActive(kind==StudyFrameKind.Pdf);
+            next.gameObject.SetActive(kind==StudyFrameKind.Pdf);
             FitContent();
         }
         private void FitContent()
@@ -103,19 +105,21 @@ namespace AR
         private RectTransform Panel(string name,Transform parent,Vector2 pos,Vector2 size,Color color)
         {
             var obj=new GameObject(name,typeof(RectTransform),typeof(Image));
-            obj.GetComponent<Image>().color=color; return Place(obj,parent,pos,size);
+            AcademyUI.Style(obj.GetComponent<Image>(),color); return Place(obj,parent,pos,size);
         }
         private Text Label(Transform parent,string text,Vector2 pos,Vector2 size,int fontSize,Color color)
         {
             var obj=new GameObject("Label",typeof(RectTransform),typeof(Text)); Place(obj,parent,pos,size);
             var label=obj.GetComponent<Text>(); label.font=font; label.text=text; label.fontSize=fontSize;
             label.color=color; label.alignment=TextAnchor.MiddleCenter; label.raycastTarget=false;
+            label.resizeTextForBestFit=true; label.resizeTextMinSize=14; label.resizeTextMaxSize=fontSize;
             return label;
         }
         private Button Button(Transform parent,string text,Vector2 pos,Vector2 size,Action click)
         {
             var rect=Panel(text,parent,pos,size,new Color(.08f,.48f,.47f));
             var button=rect.gameObject.AddComponent<Button>(); button.onClick.AddListener(()=>click());
+            AcademyUI.StyleButton(button);
             Label(rect,text,Vector2.zero,size,21,Color.white); return button;
         }
     }

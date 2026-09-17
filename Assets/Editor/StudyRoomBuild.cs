@@ -13,10 +13,11 @@ namespace AR
 {
     public static class StudyRoomBuild
     {
-        [MenuItem("Tools/Study Room/Build gallery scene")]
+        [MenuItem("Tools/Academy/Rebuild classroom")]
         public static void BuildScene()
         {
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            GenerateWoodTexture();
             ConfigureLessonTextures();
             bool existingGallery = File.Exists("Assets/Scenes/StudyRoom.unity");
             var scene = EditorSceneManager.OpenScene(existingGallery ? "Assets/Scenes/StudyRoom.unity" : "Assets/ThirdPerson Control/Scene/3rdPerson.unity");
@@ -32,7 +33,7 @@ namespace AR
             }
             else foreach (var root in scene.GetRootGameObjects())
                 if (root != manager.transform.root.gameObject && root != characters.root.gameObject) UnityEngine.Object.DestroyImmediate(root);
-            var environment = new GameObject("Study Gallery").AddComponent<StudyRoomEnvironment>();
+            var environment = new GameObject("Learning Academy Environment").AddComponent<StudyRoomEnvironment>();
             environment.Build();
             Directory.CreateDirectory("Assets/Resources/StudyGalleryMaterials");
             AssetDatabase.Refresh();
@@ -60,11 +61,12 @@ namespace AR
             cam.transform.position = new Vector3(0, 2.6f, -5.4f);
             cam.transform.LookAt(new Vector3(0, 2.5f, 4));
             cam.fieldOfView = 65;
-            var light = UnityEngine.Object.FindFirstObjectByType<Light>();
+            var light = UnityEngine.Object.FindObjectsByType<Light>(FindObjectsSortMode.None).FirstOrDefault(l => l.type == LightType.Directional);
             if (light == null) light = new GameObject("Gallery daylight", typeof(Light)).GetComponent<Light>();
             light.type = LightType.Directional; light.intensity = 1.2f;
+            light.shadows = LightShadows.Soft;
             light.transform.rotation = Quaternion.Euler(50, -30, 0);
-            RenderSettings.ambientLight = new Color(.7f,.7f,.7f);
+            RenderSettings.ambientIntensity = 1f;
             EditorSceneManager.SaveScene(scene, "Assets/Scenes/StudyRoom.unity");
             AssetDatabase.SaveAssets();
             Debug.Log("Study room scene and prefab saved.");
@@ -88,10 +90,31 @@ namespace AR
             }
         }
 
+        private static void GenerateWoodTexture()
+        {
+            const string path="Assets/Resources/AcademyWood.png";
+            if(File.Exists(path))return;
+            var texture=new Texture2D(256,256,TextureFormat.RGB24,false);
+            for(int y=0;y<256;y++)for(int x=0;x<256;x++)
+            {
+                float grain=Mathf.Sin(x*.7f+Mathf.Sin(y*.02454f)*2f)*.045f;
+                float fine=Mathf.Sin(x*3.1f+y*.09817f)*.018f;
+                float tone=.9f+grain+fine;
+                texture.SetPixel(x,y,new Color(tone,tone,tone));
+            }
+            texture.Apply();File.WriteAllBytes(path,texture.EncodeToPNG());
+            UnityEngine.Object.DestroyImmediate(texture);
+            AssetDatabase.ImportAsset(path);
+            var importer=(TextureImporter)AssetImporter.GetAtPath(path);
+            importer.wrapMode=TextureWrapMode.Repeat;importer.anisoLevel=4;importer.SaveAndReimport();
+        }
+
         public static void BuildAndValidate()
         {
             try
             {
+                PlayerSettings.productName = "StudyRoom Isolated Validation";
+                ValidateCatalog();
                 BuildScene();
                 PlayerSettings.productName = "StudyRoom Isolated Validation";
                 Physics.SyncTransforms();
@@ -189,9 +212,69 @@ namespace AR
                 SessionState.SetBool("StudyRoom.ValidatePlay", false);
                 File.WriteAllText(Path.Combine(Application.dataPath, "../validation-result.txt"), "PASS: six frame/border raycasts; bundled images and original PDFs; image reader; PDF next/previous and page bounds; zoom; reading pause state; both linked quizzes; duplicate answer protection; results/retry/close. Native Windows PDF parser separately confirmed both PDFs have two pages.");
                 Debug.Log("STUDY ROOM VALIDATION PASSED");
-                EditorApplication.Exit(0);
+                SceneManager.LoadScene("MainMenu");
+                waitFrames=0;
+                EditorApplication.update += ValidateMenu;
             }
             catch (Exception exception) { Debug.LogException(exception); EditorApplication.Exit(1); }
+        }
+
+        private static void ValidateCatalog()
+        {
+            var data=StudyLessonCatalog.Load();
+            var copy=StudyLessonCatalog.FromJson(JsonUtility.ToJson(data));
+            Require(copy.lessons.Length==data.lessons.Length,"Catalog round trip must retain lessons.");
+            copy.lessons[0].questions[0].correct=4;
+            bool rejected=false;
+            try { StudyLessonCatalog.FromJson(JsonUtility.ToJson(copy)); } catch(InvalidOperationException) { rejected=true; }
+            Require(rejected,"Invalid answer index must be rejected.");
+            copy=StudyLessonCatalog.FromJson(JsonUtility.ToJson(data));
+            copy.lessons[1].subject=copy.lessons[0].subject;
+            rejected=false;
+            try { StudyLessonCatalog.FromJson(JsonUtility.ToJson(copy)); } catch(InvalidOperationException) { rejected=true; }
+            Require(rejected,"Duplicate subjects must be rejected.");
+            var extra=JsonUtility.FromJson<StudyLesson>(JsonUtility.ToJson(data.lessons[0]));
+            extra.subject="Science";
+            copy.lessons=new[]{data.lessons[0],data.lessons[1],extra};
+            var temporary=new GameObject("Dynamic content validation").AddComponent<StudyRoomEnvironment>();
+            temporary.DisplayLessons(copy,2);
+            Require(temporary.GetComponentsInChildren<StudyFrame>().Length==3,"Odd subject count must create only three last-page frames.");
+            Require(temporary.GetComponentsInChildren<StudyFrame>().All(f=>f.subject=="Science"),"Dynamic subjects must own their own frames.");
+            UnityEngine.Object.DestroyImmediate(temporary.gameObject);
+        }
+
+        private static void ValidateMenu()
+        {
+            if(++waitFrames<60)return;
+            EditorApplication.update-=ValidateMenu;
+            try
+            {
+                var menu=UnityEngine.Object.FindFirstObjectByType<AcademyMenu>();
+                var selection=UnityEngine.Object.FindFirstObjectByType<ChildSelection>();
+                Require(menu!=null && selection!=null,"Academy menu must load from MainMenu.");
+                var buttons=menu.GetComponentsInChildren<Button>();
+                buttons.First(b=>b.name==">").onClick.Invoke();
+                Require(selection.transform.Cast<Transform>().Count(t=>t.gameObject.activeSelf)==1,"Selection must activate exactly one learner.");
+                Capture(Camera.main,"academy-menu.png");
+                buttons.First(b=>b.name=="Enter academy  >").onClick.Invoke();
+                waitFrames=0;
+                EditorApplication.update+=ValidateReturn;
+            }
+            catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
+        }
+
+        private static void ValidateReturn()
+        {
+            if(++waitFrames<60)return;
+            EditorApplication.update-=ValidateReturn;
+            try
+            {
+                Require(UnityEngine.Object.FindFirstObjectByType<StudyRoom>()!=null,"Enter academy must return to the playable classroom.");
+                File.AppendAllText(Path.Combine(Application.dataPath,"../validation-result.txt")," Academy: catalog validation; arbitrary third subject/odd page; learner menu; character switching; enter-academy navigation.");
+                Debug.Log("ACADEMY VALIDATION PASSED");
+                EditorApplication.Exit(0);
+            }
+            catch(Exception error){Debug.LogException(error);EditorApplication.Exit(1);}
         }
 
         private static void Invoke(StudyRoom room, string method, params object[] args)

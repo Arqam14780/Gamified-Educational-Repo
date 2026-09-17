@@ -3,28 +3,30 @@ using UnityEngine;
 
 namespace AR
 {
-    public sealed class StudyRoomEnvironment : MonoBehaviour
+    public sealed partial class StudyRoomEnvironment : MonoBehaviour
     {
         public readonly List<Material> GeneratedMaterials = new List<Material>();
         private readonly Dictionary<Color, Material> palette = new Dictionary<Color, Material>();
+        private readonly List<Material> framePreviews = new List<Material>();
         private Transform group;
-        private static readonly Color Gold = new Color(.83f, .55f, .16f);
-        private static readonly Color GoldLight = new Color(1f, .82f, .42f);
-        private static readonly Color Wood = new Color(.29f, .13f, .07f);
-        private static readonly Color Cream = new Color(.96f, .93f, .82f);
+        private static readonly Color Gold = new Color(.16f, .32f, .39f);
+        private static readonly Color GoldLight = new Color(.85f, .67f, .36f);
+        private static readonly Color Wood = new Color(.32f, .23f, .16f);
+        private static readonly Color Cream = new Color(.93f, .94f, .90f);
 
         public void Build()
         {
             if (transform.childCount > 0) return;
             group = transform;
             BuildShell();
+            BuildAcademy();
             BuildFrames();
         }
 
         private void BuildShell()
         {
             Box("Foundation", new Vector3(0, -.18f, 0), new Vector3(14.4f, .36f, 12.4f), Wood);
-            var wall = new Color(.28f, .49f, .24f);
+            var wall = new Color(.78f, .85f, .83f);
             Box("North wall", new Vector3(0, 2.8f, 6.15f), new Vector3(14.6f, 5.6f, .3f), wall);
             Box("South wall", new Vector3(0, 2.8f, -6.15f), new Vector3(14.6f, 5.6f, .3f), wall);
             Box("West wall", new Vector3(-7.15f, 2.8f, 0), new Vector3(.3f, 5.6f, 12.6f), wall);
@@ -44,7 +46,7 @@ namespace AR
                 trim.localRotation = Quaternion.Euler(0, side == 0 ? 0 : side == 1 ? 180 : side == 2 ? -90 : 90, 0);
                 group = trim;
                 float length = side < 2 ? 14 : 12;
-                Box("Walnut wainscot", new Vector3(0, .5f, 0), new Vector3(length, 1, .08f), Wood);
+                Box("Acoustic wall panel", new Vector3(0, .5f, 0), new Vector3(length, 1, .08f), Gold);
                 Box("Brass chair rail", new Vector3(0, 1.02f, -.045f), new Vector3(length, .065f, .09f), Gold);
                 Box("Skirting", new Vector3(0, .09f, -.035f), new Vector3(length, .18f, .12f), Wood);
                 Box("Crown moulding", new Vector3(0, 5.38f, -.07f), new Vector3(length, .16f, .22f), Cream, false);
@@ -52,7 +54,7 @@ namespace AR
                     Box("Panel stile", new Vector3(x, .5f, -.06f), new Vector3(.045f, .8f, .04f), Gold, false);
             }
             group = transform;
-            Box("Ceiling", new Vector3(0, 5.65f, 0), new Vector3(14.6f, .2f, 12.6f), new Color(.14f, .19f, .18f));
+            Box("Ceiling", new Vector3(0, 5.65f, 0), new Vector3(14.6f, .2f, 12.6f), Cream);
             for (int x = -4; x <= 4; x += 4)
             for (int z = -4; z <= 4; z += 4)
             {
@@ -71,15 +73,35 @@ namespace AR
         }
         private void BuildFrames()
         {
-            var lessons = StudyLessonCatalog.Load();
-            var math = lessons.Find("Math");
-            var english = lessons.Find("English");
-            Frame("Math", new Vector3(-3.1f, 2.9f, 5.91f), 0, "1 + 1", "NUMBERS & COUNTING", new Color(.08f, .40f, .65f));
-            Frame("English", new Vector3(3.1f, 2.9f, 5.91f), 0, "A B C", "LETTERS & WORDS", new Color(.63f, .24f, .14f));
-            Frame("Math", new Vector3(-6.91f, 2.9f, 2.2f), -90, "", "", Color.white, StudyFrameKind.Image, math.imageResource);
-            Frame("Math", new Vector3(-6.91f, 2.9f, -2.2f), -90, "", "", Color.white, StudyFrameKind.Pdf, math.pdfPages[0]);
-            Frame("English", new Vector3(6.91f, 2.9f, 2.2f), 90, "", "", Color.white, StudyFrameKind.Image, english.imageResource);
-            Frame("English", new Vector3(6.91f, 2.9f, -2.2f), 90, "", "", Color.white, StudyFrameKind.Pdf, english.pdfPages[0]);
+            DisplayLessons(StudyLessonCatalog.Load(), 0);
+        }
+
+        // Two learning packs per room page; each pack gets three independent frames.
+        public void DisplayLessons(StudyLessonCatalog catalog, int first)
+        {
+            foreach (var preview in framePreviews)
+            {
+                GeneratedMaterials.Remove(preview);
+                if (Application.isPlaying) Destroy(preview); else DestroyImmediate(preview);
+            }
+            framePreviews.Clear();
+            foreach (var old in GetComponentsInChildren<StudyFrame>())
+            {
+                old.gameObject.SetActive(false);
+                if (Application.isPlaying) Destroy(old.gameObject); else DestroyImmediate(old.gameObject);
+            }
+            for (int slot = 0; slot < 2 && first + slot < catalog.lessons.Length; slot++)
+            {
+                var lesson = catalog.lessons[first + slot];
+                float side = slot == 0 ? -1 : 1;
+                Frame(lesson.subject, new Vector3(side * 3.1f, 2.9f, 5.91f), 0,
+                    "QUIZ", "CHECK YOUR LEARNING", slot == 0 ? new Color(.06f,.39f,.48f) : new Color(.28f,.32f,.58f));
+                Frame(lesson.subject, new Vector3(side * 6.91f, 2.9f, 2.2f), side * 90,
+                    "", "", Color.white, StudyFrameKind.Image, lesson.imageResource);
+                Frame(lesson.subject, new Vector3(side * 6.91f, 2.9f, -2.2f), side * 90,
+                    "", "", Color.white, StudyFrameKind.Pdf, lesson.pdfPages[0]);
+            }
+            group = transform;
         }
 
         private void Frame(string subject, Vector3 position, float yaw, string symbol, string caption, Color accent, StudyFrameKind kind = StudyFrameKind.Quiz, string previewResource = null)
@@ -110,8 +132,8 @@ namespace AR
             }
             else
             {
-                var texture = Resources.Load<Texture2D>(previewResource);
-                if (texture == null) throw new System.InvalidOperationException("Missing frame preview: " + previewResource);
+                var texture = StudyContent.Texture(previewResource);
+                if (texture == null) Debug.LogWarning("Missing frame preview: " + previewResource);
                 var material = new Material(Resources.Load<Shader>("StudyRoomSurface"));
                 material.name = subject + " " + kind + " preview";
                 material.color = Color.white; material.mainTexture = texture;
@@ -119,6 +141,7 @@ namespace AR
                 material.mainTextureScale = new Vector2(-1,-1);
                 material.mainTextureOffset = Vector2.one;
                 GeneratedMaterials.Add(material);
+                framePreviews.Add(material);
                 poster.GetComponent<Renderer>().sharedMaterial = material;
                 Text(kind.ToString().ToUpperInvariant()+" / "+subject.ToUpperInvariant(),new Vector3(0,.99f,-.215f),.047f,Wood);
             }
@@ -151,13 +174,21 @@ namespace AR
             obj.GetComponent<Collider>().enabled = collision;
             if (!palette.TryGetValue(color, out Material material))
             {
-                material = new Material(Resources.Load<Shader>("StudyRoomSurface"));
+                material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 material.name = "Gallery " + ColorUtility.ToHtmlStringRGB(color);
                 material.color = color;
+                material.SetFloat("_Smoothness", .25f);
                 palette.Add(color, material);
                 GeneratedMaterials.Add(material);
             }
             obj.GetComponent<Renderer>().sharedMaterial = material;
+            if (name == "Parquet board" || name == "Study desk oak top" || name == "Entry door")
+                material.mainTexture = Resources.Load<Texture2D>("AcademyWood");
+            if (name == "Skylight diffuser")
+            {
+                material.EnableKeyword("_EMISSION");
+                material.SetColor("_EmissionColor",new Color(1,.95f,.83f)*1.2f);
+            }
             return obj;
         }
 

@@ -18,6 +18,7 @@ namespace AR
             int index = Mathf.Clamp(PlayerPrefs.GetInt("ChildIndex", 0), 0, CharacterContainer.childCount - 1);
             for (int i = 0; i < CharacterContainer.childCount; i++) CharacterContainer.GetChild(i).gameObject.SetActive(i == index);
             activePlayer = CharacterContainer.GetChild(index).gameObject;
+            AcademyCharacterMaterials.Prepare(activePlayer);
             if (thirdPersonCam != null) thirdPersonCam.target = activePlayer.transform;
         }
         private void Start()
