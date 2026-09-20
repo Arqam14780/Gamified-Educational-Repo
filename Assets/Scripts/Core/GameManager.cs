@@ -6,7 +6,7 @@ namespace AR
         [Tooltip("Assign At Run time")]
         public GameObject activePlayer;
         [SerializeField] private Transform CharacterContainer;
-        [SerializeField] private ThirdPersonOrbitCamBasic thirdPersonOrbitCam;
+        [SerializeField] private ThirdPersonCamera thirdPersonCam;
         private void Awake()
         {
             if (CharacterContainer == null || CharacterContainer.childCount == 0)
@@ -18,10 +18,13 @@ namespace AR
             int index = Mathf.Clamp(PlayerPrefs.GetInt("ChildIndex", 0), 0, CharacterContainer.childCount - 1);
             for (int i = 0; i < CharacterContainer.childCount; i++) CharacterContainer.GetChild(i).gameObject.SetActive(i == index);
             activePlayer = CharacterContainer.GetChild(index).gameObject;
-            thirdPersonOrbitCam.player = activePlayer.transform;
-            thirdPersonOrbitCam.enabled = true;
+            AcademyCharacterMaterials.Prepare(activePlayer);
+            if (thirdPersonCam != null) thirdPersonCam.target = activePlayer.transform;
+        }
+        private void Start()
+        {
+            var room = new GameObject("Learning Academy - Study Room").AddComponent<StudyRoom>();
+            room.Initialize(activePlayer);
         }
     }
-
-
 }
