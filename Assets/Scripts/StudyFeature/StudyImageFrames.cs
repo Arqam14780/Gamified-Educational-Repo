@@ -35,6 +35,12 @@ namespace AR {
                 studyContent.imageLessons[frameInd].lessonImage);
         }
 
+        public void DisableImageFrame()
+        {
+            for (int i = 0; i < imageFrames.Length; i++)
+                imageFrames[i].imageFrameScreen.SetActive(false);
+        }
+
     }
 
     [Serializable]

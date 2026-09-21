@@ -36,6 +36,12 @@ namespace AR
                 studyContent.pdfLessons[frameInd].pages);
         }
 
+        public void DisablePdfFrame()
+        {
+            for (int i = 0; i < pdfFrames.Length; i++)
+                pdfFrames[i].pdfFrameScreen.SetActive(false);
+        }
+
     }
 
     [Serializable]

@@ -32,7 +32,14 @@ namespace AR
         {
             LearningController.Instance.PlayVideoData(
                 studyContent.videoLessons[frameInd].lessonText,
-                studyContent.videoLessons[frameInd].videoClip);
+                studyContent.videoLessons[frameInd].videoClip,
+                studyContent.videoLessons[frameInd].lessonType);
+        }
+
+        public void DisableVideoFrame()
+        {
+            for (int i = 0; i < videoFrames.Length; i++)
+                videoFrames[i].videoFrameScreen.SetActive(false);
         }
 
     }

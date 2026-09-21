@@ -13,10 +13,28 @@ MonoBehaviour:
   m_Name: QuizLesson (1)
   m_EditorClassIdentifier: Assembly-CSharp::AR.StudyQuizData
   quizType: ENGLISH / QUIZ
-  questions:
-  - question: A is for ...
-    optionA: Apple
-    optionB: Ball
-    optionC: Cat
-    optionD: Dog
+  quizInfo:
+  - name: Quiz (1) Data
+    question: A is for..
+    options:
+    - Apple
+    - Ball
+    - Cat
+    - Dog
     correctAnswer: 0
+  - name: Quiz (2) Data
+    question: B is for..
+    options:
+    - Apple
+    - Ball
+    - Cat
+    - Dog
+    correctAnswer: 1
+  - name: Quiz (3) Data
+    question: C is for..
+    options:
+    - Apple
+    - Ball
+    - Cat
+    - Dog
+    correctAnswer: 2

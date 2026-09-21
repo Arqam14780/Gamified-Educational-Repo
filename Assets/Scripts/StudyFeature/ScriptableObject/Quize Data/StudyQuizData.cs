@@ -13,21 +13,18 @@ namespace AR
         public string quizType;
 
         [Header("Questions")]
-        public QuizQuestion[] questions;
+        public QuizInfo[] quizInfo;
     }
 
     [Serializable]
-    public class QuizQuestion
+    public class QuizInfo
     {
+        public string name;
         [TextArea(2, 5)]
         public string question;
 
         [Header("Four Options")]
-        public string optionA;
-        public string optionB;
-        public string optionC;
-        public string optionD;
-
+        public string[] options;
         [Header("Correct Answer")]
         [Range(0, 3)]
         public int correctAnswer;
