@@ -39436,7 +39436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d5218a34f6b5246802db741c8e9bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StudyImageFrames
-  studyContent: {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   imageFrames:
   - name: English Image Frame (1)
     imageFrameScreen: {fileID: 1197885972}
@@ -39460,7 +39461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174f175f62d50c46b1f39c1eeb9809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR.StudyPdfFrames
-  studyContent: {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   pdfFrames:
   - name: English Pdf Frame (1)
     pdfFrameScreen: {fileID: 919216773}
@@ -39484,7 +39486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbba7e2957162b49a4612052c068d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenVideoFrames
-  studyContent: {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   videoFrames:
   - name: English Video Frame (1)
     videoFrameScreen: {fileID: 890411940}
@@ -39508,7 +39511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd45e22ae7bcc024daff8c03d66fd4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR.OpenQuizFrame
-  studyContent: {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   quizFrame:
   - name: Quiz Frame
     quizFrameScreen: {fileID: 539154128}

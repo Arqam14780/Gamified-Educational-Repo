@@ -8,32 +8,35 @@ namespace AR
     public class StudyPdfFrames : MonoBehaviour
     {
         [SerializeField]
-        private StudyContentDatabase studyContent;
+        private StudyContentDatabase[] studyContent;
         [Header("Pdf Related Content")]
         public PdfFrame[] pdfFrames;
+
+        private int stageNum = 1;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            if (pdfFrames.Length > studyContent.pdfLessons.Length)
+            stageNum = PlayerPrefs.GetInt("Stage", 1);
+            if (pdfFrames.Length > studyContent[stageNum - 1].pdfLessons.Length)
             {
-                for (int i = studyContent.pdfLessons.Length; i < pdfFrames.Length; i++)
+                for (int i = studyContent[stageNum - 1].pdfLessons.Length; i < pdfFrames.Length; i++)
                     pdfFrames[i].pdfFrameScreen.SetActive(false);
             }
 
-            for (int i = 0; i < studyContent.pdfLessons.Length; i++)
+            for (int i = 0; i < studyContent[stageNum - 1].pdfLessons.Length; i++)
             {
-                pdfFrames[i].pdfLessonTxt.text = studyContent.pdfLessons[i].lessonText;
-                pdfFrames[i].pdfSprite.sprite = studyContent.pdfLessons[i].pages[0];
-                pdfFrames[i].lessonTypeTxt.text = studyContent.pdfLessons[i].lessonType;
+                pdfFrames[i].pdfLessonTxt.text = studyContent[stageNum - 1].pdfLessons[i].lessonText;
+                pdfFrames[i].pdfSprite.sprite = studyContent[stageNum - 1].pdfLessons[i].pages[0];
+                pdfFrames[i].lessonTypeTxt.text = studyContent[stageNum - 1].pdfLessons[i].lessonType;
             }
         }
 
         public void OpenPdfFrame(int frameInd)
         {
             LearningController.Instance.ViewPdfData(
-                studyContent.pdfLessons[frameInd].lessonText,
-                studyContent.pdfLessons[frameInd].pages);
+                studyContent[stageNum - 1].pdfLessons[frameInd].lessonText,
+                studyContent[stageNum - 1].pdfLessons[frameInd].pages);
         }
 
         public void DisablePdfFrame()

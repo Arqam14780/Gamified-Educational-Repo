@@ -7,30 +7,33 @@ namespace AR
     public class OpenQuizFrame : MonoBehaviour
     {
         [SerializeField]
-        private StudyContentDatabase studyContent;
+        private StudyContentDatabase[] studyContent;
         [Header("Quiz Related Content")]
         public QuizFrame[] quizFrame;
+
+        private int stageNum = 1;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            if (quizFrame.Length > studyContent.quizzes.Length)
+            stageNum = PlayerPrefs.GetInt("Stage", 1);
+            if (quizFrame.Length > studyContent[stageNum - 1].quizzes.Length)
             {
-                for (int i = studyContent.quizzes.Length; i < quizFrame.Length; i++)
+                for (int i = studyContent[stageNum - 1].quizzes.Length; i < quizFrame.Length; i++)
                     quizFrame[i].quizFrameScreen.SetActive(false);
             }
 
-            for (int i = 0; i < studyContent.quizzes.Length; i++)
+            for (int i = 0; i < studyContent[stageNum - 1].quizzes.Length; i++)
             {
-                quizFrame[i].quizTypeTxt.text = studyContent.quizzes[i].quizType;
+                quizFrame[i].quizTypeTxt.text = studyContent[stageNum - 1].quizzes[i].quizType;
             }
         }
 
         public void OpenQuizData(int frameInd)
         {
             LearningController.Instance.ViewQuizData(
-                studyContent.quizzes[frameInd].quizType,
-                studyContent.quizzes[frameInd].quizInfo);
+                studyContent[stageNum - 1].quizzes[frameInd].quizType,
+                studyContent[stageNum - 1].quizzes[frameInd].quizInfo);
         }
 
         public void DisableQuizFrame()
