@@ -6,6 +6,7 @@ namespace AR
 {
     public class ChildSelection : MonoBehaviour
     {
+        public GameObject[] stagePointers;
         private List<GameObject> children = new List<GameObject>();
         private int currentActiveChild = 0;
 
@@ -27,6 +28,10 @@ namespace AR
             var menu = FindFirstObjectByType<AcademyMenu>();
             if (menu != null) menu.Initialize(this, currentActiveChild);
             else Debug.LogError("MainMenu needs its saved Academy UI. Use Tools > Academy > Save menu UI to scene.", this);
+       
+            int stageNum = PlayerPrefs.GetInt("Stage", 1);
+            foreach (GameObject pointer in stagePointers) pointer.SetActive(false);
+            stagePointers[stageNum - 1].SetActive(true);
         }
 
         public void SelectChild(int num)
@@ -43,7 +48,7 @@ namespace AR
         {
             PlayerPrefs.SetInt("ChildIndex", currentActiveChild);
             PlayerPrefs.Save();
-            SceneManager.LoadScene("StudyRoom");
+            SceneManager.LoadScene(/*"StudyRoom"*/"GamePlay");
         }
 
 

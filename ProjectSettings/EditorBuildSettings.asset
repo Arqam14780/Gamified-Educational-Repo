@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5041202ab844a0d46960c1761e190b6b
   - enabled: 1
-    path: Assets/Scenes/StudyRoom.unity
-    guid: dac77c46300b65f4182f5c9fc023d88f
-  - enabled: 1
     path: Assets/Scenes/GamePlay.unity
     guid: e0e0fb53ce74e524daea4799a157638d
+  - enabled: 1
+    path: Assets/Scenes/StudyRoom.unity
+    guid: dac77c46300b65f4182f5c9fc023d88f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
