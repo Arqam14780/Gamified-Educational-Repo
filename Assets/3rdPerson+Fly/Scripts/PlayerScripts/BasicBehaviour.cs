@@ -64,15 +64,15 @@ public class BasicBehaviour : MonoBehaviour
 	void Update()
 	{
 		// Store the input axes.
-		h = ControlFreak2.CF2Input.GetAxis("Horizontal");
-		v = ControlFreak2.CF2Input.GetAxis("Vertical");
+		h = MobileInputManager.Instance.MoveInput.x; //ControlFreak2.CF2Input.GetAxis("Horizontal");
+		v = MobileInputManager.Instance.MoveInput.y; //ControlFreak2.CF2Input.GetAxis("Vertical");
 
 		// Set the input axes on the Animator Controller.
 		anim.SetFloat(hFloat, h, 0.1f, Time.deltaTime);
 		anim.SetFloat(vFloat, v, 0.1f, Time.deltaTime);
 
 		// Toggle sprint by input.
-		sprint = ControlFreak2.CF2Input.GetButton (sprintButton);
+		sprint = MobileInputManager.Instance.SprintPressed; /*ControlFreak2.CF2Input.GetButton (sprintButton);*/
 
 		// Set the correct camera FOV for sprint mode.
 		if(IsSprinting() && isChangeFOV)

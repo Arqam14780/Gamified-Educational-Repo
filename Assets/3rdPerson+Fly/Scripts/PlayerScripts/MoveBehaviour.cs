@@ -38,7 +38,7 @@ public class MoveBehaviour : GenericBehaviour
 	void Update()
 	{ 
 		// Get jump input.
-		if (!jump && ControlFreak2.CF2Input.GetButtonDown(jumpButton) && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
+		if (!jump && MobileInputManager.Instance.JumpPressed/*ControlFreak2.CF2Input.GetButtonDown(jumpButton)*/ && behaviourManager.IsCurrentBehaviour(this.behaviourCode) && !behaviourManager.IsOverriding())
 		{
             jump = true;
 		}

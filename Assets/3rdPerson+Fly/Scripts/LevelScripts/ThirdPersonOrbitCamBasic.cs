@@ -69,8 +69,8 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		// Get mouse movement to orbit the camera.
 		// Mouse:
 		// CnControls.CnInputManager.GetAxis("MouseX")  //  CnControls.CnInputManager.GetAxis("MouseY")
-		angleH += Mathf.Clamp(ControlFreak2.CF2Input.GetAxis("Mouse X"), -1, 1) * horizontalAimingSpeed;
-		angleV += Mathf.Clamp(ControlFreak2.CF2Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed;
+		angleH += Mathf.Clamp(MobileInputManager.Instance.LookInput.x/*ControlFreak2.CF2Input.GetAxis("Mouse X")*/, -1, 1) * horizontalAimingSpeed;
+		angleV += Mathf.Clamp(MobileInputManager.Instance.LookInput.y/*ControlFreak2.CF2Input.GetAxis("Mouse Y")*/, -1, 1) * verticalAimingSpeed;
 		// Joystick:
 	//	angleH += Mathf.Clamp(ControlFreak2.CF2Input.GetAxis(XAxis), -1, 1) * 60 * horizontalAimingSpeed * Time.deltaTime;
 	//	angleV += Mathf.Clamp(ControlFreak2.CF2Input.GetAxis(YAxis), -1, 1) * 60 * verticalAimingSpeed * Time.deltaTime;
@@ -83,8 +83,8 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
 		cam.rotation = aimRotation;
 
-        // my changes start
-        fireButtonPressed = ControlFreak2.CF2Input.GetButton("Fire1") || ControlFreak2.CF2Input.GetButton("Fire2");
+		// my changes start
+		fireButtonPressed = Input.GetMouseButton(1)/*ControlFreak2.CF2Input.GetButton("Fire1") || ControlFreak2.CF2Input.GetButton("Fire2")*/;
         if (fireButtonPressed)
         {
             fakeRot = Quaternion.Euler(0, angleH, 0);
