@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: StudyLessonCatalog
+  m_EditorClassIdentifier: Assembly-CSharp:AR:StudyLessonCatalogAsset
+  lessons:
+  - subject: Math
+    title: Count, add and explore shapes
+    imageResource: Lessons/math-image
+    pdfPages:
+    - Lessons/math-page-1
+    - Lessons/math-page-2
+    pdfFile: Lessons/math.pdf
+    questions:
+    - prompt: 1 + 1 = ?
+      options:
+      - 1
+      - 2
+      - 3
+      - 4
+      correct: 1
+      source: 'Math image: counting pairs'
+    - prompt: 3 + 2 = ?
+      options:
+      - 3
+      - 4
+      - 5
+      - 6
+      correct: 2
+      source: 'Math PDF, page 1: adding groups'
+    - prompt: 5 - 2 = ?
+      options:
+      - 3
+      - 2
+      - 4
+      - 7
+      correct: 0
+      source: 'Math PDF, page 2: taking away'
+    - prompt: 2 + 4 = ?
+      options:
+      - 2
+      - 4
+      - 5
+      - 6
+      correct: 3
+      source: 'Math PDF, page 1: adding groups'
+    - prompt: How many sides does a triangle have?
+      options:
+      - 2
+      - 3
+      - 4
+      - 5
+      correct: 1
+      source: 'Math image: meet the triangle'
+  - subject: English
+    title: Letters, words and opposites
+    imageResource: Lessons/english-image
+    pdfPages:
+    - Lessons/english-page-1
+    - Lessons/english-page-2
+    pdfFile: Lessons/english.pdf
+    questions:
+    - prompt: A is for ...
+      options:
+      - Apple
+      - Ball
+      - Cat
+      - Dog
+      correct: 0
+      source: 'English image: A is for Apple'
+    - prompt: Which letter comes after B?
+      options:
+      - A
+      - D
+      - C
+      - E
+      correct: 2
+      source: 'English image: the A B C sequence'
+    - prompt: Choose the opposite of BIG.
+      options:
+      - Tall
+      - Small
+      - Long
+      - Happy
+      correct: 1
+      source: 'English PDF, page 1: opposites'
+    - prompt: 'Complete the word: C _ T'
+      options:
+      - A
+      - B
+      - D
+      - Z
+      correct: 0
+      source: 'English PDF, page 2: spelling CAT'
+    - prompt: Which word is a colour?
+      options:
+      - Run
+      - Book
+      - Cat
+      - Blue
+      correct: 3
+      source: 'English PDF, page 2: colour words'
