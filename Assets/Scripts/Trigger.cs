@@ -19,8 +19,8 @@ namespace AR
         private void LoadActivityScene()
         {
             int stageNum = PlayerPrefs.GetInt("Stage", 1);
-            stageNum = stageNum + SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(stageNum);
+            int sceneIndex = stageNum + SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(sceneIndex);
 
             if (stageNum < 3)
                 PlayerPrefs.SetInt("Stage", stageNum + 1);

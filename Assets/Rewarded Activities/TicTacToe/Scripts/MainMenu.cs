@@ -36,11 +36,11 @@ public class MainMenu : MonoBehaviour
         GameController.Instance.ref_MainMenu = this;
         SetToggle_Status();
 
-        if (PlayerPrefs.GetString("1stTimeGameLoad", "True") == "True")
-        {
-            PlayerPrefs.SetString("1stTimeGameLoad", "False");
-            profilePanel.SetActive(true);
-        }
+        //if (PlayerPrefs.GetString("1stTimeGameLoad", "True") == "True")
+        //{
+        //    PlayerPrefs.SetString("1stTimeGameLoad", "False");
+        //    profilePanel.SetActive(true);
+        //}
 
         if (GameController.Instance.isMultiPlayerModeActive == true)
         {

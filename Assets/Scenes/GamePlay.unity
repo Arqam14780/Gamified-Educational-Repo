@@ -29941,7 +29941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &709096102
 GameObject:
   m_ObjectHideFlags: 0
@@ -39715,6 +39715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StudyImageFrames
   studyContent:
   - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   imageFrames:
   - name: English Image Frame (1)
     imageFrameScreen: {fileID: 1197885972}
@@ -39739,6 +39741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR.StudyPdfFrames
   studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   pdfFrames:
   - name: English Pdf Frame (1)
@@ -39765,6 +39769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpenVideoFrames
   studyContent:
   - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   videoFrames:
   - name: English Video Frame (1)
     videoFrameScreen: {fileID: 890411940}
@@ -39789,6 +39795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR.OpenQuizFrame
   studyContent:
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
+  - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   - {fileID: 11400000, guid: 557b2e7d2cc3f4e46b82228e5b2e54ff, type: 2}
   quizFrame:
   - name: Quiz Frame
