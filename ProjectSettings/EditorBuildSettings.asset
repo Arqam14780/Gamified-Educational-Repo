@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/GamePlay.unity
     guid: e0e0fb53ce74e524daea4799a157638d
   - enabled: 1
-    path: Assets/Scenes/StudyRoom.unity
-    guid: dac77c46300b65f4182f5c9fc023d88f
+    path: Assets/Rewarded Activities/TicTacToe/Scenes/TicTacToe.unity
+    guid: 659fa75c6c13a7c4c89126a36f8498d4
+  - enabled: 1
+    path: Assets/Rewarded Activities/DotAndBox/Scenes/DotAndBox.unity
+    guid: 1b16523c261238742a53cf8e0139af48
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

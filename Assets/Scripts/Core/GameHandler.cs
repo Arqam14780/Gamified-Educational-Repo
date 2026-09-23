@@ -22,6 +22,11 @@ namespace AR
             thirdPersonOrbitCam.enabled = true;
         }
 
+        private void OnEnable()
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+        }
+
         public void SetPlayerRotation()
         {
             activePlayer.transform.position = new Vector3(0.71f, -0.066f, 2f);

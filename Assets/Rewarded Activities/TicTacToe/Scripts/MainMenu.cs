@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +20,15 @@ public class MainMenu : MonoBehaviour
     public GameObject music_Tick;
     private int soundVal;
     private int musicVal;
+
+    private void OnEnable()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+    private void OnDisable()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
 
     private void Start()
     {
@@ -126,38 +134,6 @@ public class MainMenu : MonoBehaviour
                     GameController.Instance.ref_Constants._Set_Sound_Status(0);
                     sound_Tick.SetActive(false);
                 }
-                break;
-            //case "RateUs":
-            //    rateUsPanel.SetActive(true);
-            //    break;
-            //case "Star1":
-            //    rateUsPanel.transform.GetChild(0).GetComponent<Image>().sprite = fillStarSprite;
-            //    break;
-            //case "Star2":
-            //    rateUsPanel.transform.GetChild(0).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(1).GetComponent<Image>().sprite = fillStarSprite;
-            //    break;
-            //case "Star3":
-            //    rateUsPanel.transform.GetChild(0).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(1).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(2).GetComponent<Image>().sprite = fillStarSprite;
-            //    break;
-            //case "Star4":
-            //    rateUsPanel.transform.GetChild(0).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(1).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(2).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(3).GetComponent<Image>().sprite = fillStarSprite;
-            //    break;
-            //case "Star5":
-            //    rateUsPanel.transform.GetChild(0).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(1).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(2).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(3).GetComponent<Image>().sprite = fillStarSprite;
-            //    rateUsPanel.transform.GetChild(4).GetComponent<Image>().sprite = fillStarSprite;
-            //    break;
-            case "RateLink":
-                PlayerPrefs.SetString("isFiveStarGiven", "Yes");
-                Application.OpenURL("https://play.google.com/store/apps/details?id=com.fun4u.TicTacToeGame");
                 break;
             case "Play":
                 gridPanel.SetActive(true);

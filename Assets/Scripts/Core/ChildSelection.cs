@@ -7,6 +7,9 @@ namespace AR
     public class ChildSelection : MonoBehaviour
     {
         public GameObject[] stagePointers;
+        public GameObject selectBtnPanel;
+        public GameObject rewardedActivityPanel;
+
         private List<GameObject> children = new List<GameObject>();
         private int currentActiveChild = 0;
 
@@ -20,6 +23,11 @@ namespace AR
             }
         }
 
+        private void OnEnable()
+        {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+        }
+
         private void Start()
         {
             if (children.Count == 0) { Debug.LogError("Add learner models to ChildSelection.", this); return; }
@@ -28,10 +36,15 @@ namespace AR
             var menu = FindFirstObjectByType<AcademyMenu>();
             if (menu != null) menu.Initialize(this, currentActiveChild);
             else Debug.LogError("MainMenu needs its saved Academy UI. Use Tools > Academy > Save menu UI to scene.", this);
-       
-            int stageNum = PlayerPrefs.GetInt("Stage", 1);
+
             foreach (GameObject pointer in stagePointers) pointer.SetActive(false);
+            int stageNum = PlayerPrefs.GetInt("Stage", 1);
             stagePointers[stageNum - 1].SetActive(true);
+            if (PlayerPrefs.GetInt("UnlockAllStages", 0) == 1)
+            {
+                rewardedActivityPanel.SetActive(true);
+                selectBtnPanel.SetActive(true);
+            }
         }
 
         public void SelectChild(int num)
@@ -51,6 +64,27 @@ namespace AR
             SceneManager.LoadScene(/*"StudyRoom"*/"GamePlay");
         }
 
+        public void PlayTicTacToe()
+        {
+            SceneManager.LoadScene("TicTacToe");
+        }
+
+        public void PlayDotAndBox()
+        {
+            SceneManager.LoadScene("DotAndBox");
+        }
+
+        public void PlayActivityThird()
+        {
+            SceneManager.LoadScene("TicTacToe");
+        }
+
+        public void SelectActivity(int ind)
+        {
+            foreach (GameObject pointer in stagePointers) pointer.SetActive(false);
+            stagePointers[ind].SetActive(true);
+            PlayerPrefs.SetInt("Stage", ind + 1);
+        }
 
 
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
@@ -20,6 +20,11 @@ public class StartMenu : MonoBehaviour
     public GameObject music_Tick;
     private int soundVal;
     private int musicVal;
+
+    private void OnEnable()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
 
     private void Start()
     {
@@ -156,6 +161,17 @@ public class StartMenu : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    public void ExitApp()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NoExit()
+    {
+        GameHandler.Instance.ref_SoundController._BtnSound();
+        exitPanel.SetActive(false);
     }
 
 }

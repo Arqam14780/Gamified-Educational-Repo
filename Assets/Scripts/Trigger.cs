@@ -24,8 +24,11 @@ namespace AR
 
             if (stageNum < 3)
                 PlayerPrefs.SetInt("Stage", stageNum + 1);
-            else
+            else if (PlayerPrefs.GetInt("UnlockAllStages", 0) != 1)
+            {
+                PlayerPrefs.SetInt("UnlockAllStages", 1);
                 PlayerPrefs.SetInt("Stage", 1);
+            }
         }
 
 

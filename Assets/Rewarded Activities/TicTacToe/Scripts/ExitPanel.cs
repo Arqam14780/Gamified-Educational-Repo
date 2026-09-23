@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitPanel : MonoBehaviour
 {
@@ -17,7 +17,8 @@ public class ExitPanel : MonoBehaviour
         switch (btnName)
         {
             case "Yes":
-                Application.Quit();
+                SceneManager.LoadScene("MainMenu");
+                //Application.Quit();
                 break;
             case "No":
                 gameObject.SetActive(false);
