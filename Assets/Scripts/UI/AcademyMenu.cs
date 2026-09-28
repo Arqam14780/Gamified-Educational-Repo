@@ -6,6 +6,7 @@ namespace AR
     // Uses the existing character models and selection persistence.
     public sealed class AcademyMenu : MonoBehaviour
     {
+        [SerializeField] private SoundManager soundManager;
         [SerializeField] private ChildSelection selection;
         [SerializeField] private Text characterLabel;
         private int index;
@@ -16,10 +17,21 @@ namespace AR
             Refresh();
         }
 
-        public void PreviousLearner() => Select(-1);
-        public void NextLearner() => Select(1);
-        public void EnterAcademy() => selection.Play();
-
+        public void PreviousLearner()
+        {
+            soundManager.PlayBtnSound();
+            Select(-1);
+        }
+        public void NextLearner()
+        {
+            soundManager.PlayBtnSound();
+            Select(1);
+        }
+        public void EnterAcademy()
+        {
+            soundManager.PlayBtnSound();
+            selection.Play();
+        }
 #if UNITY_EDITOR
         // Authoring only: the generated hierarchy is saved into MainMenu.unity.
         public void BuildForEditor(ChildSelection owner)

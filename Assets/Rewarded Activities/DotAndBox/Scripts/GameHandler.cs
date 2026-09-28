@@ -10,7 +10,7 @@ public class GameHandler : MonoBehaviour
     public SlidersAndNodes ref_SlidersAndNodes;
     public AIPlayer ref_AIScript;
     public GetConnectedSliders ref_GetConnectedSliders;
-    public LevelManager ref_LevelManager;
+    public LvlManager ref_LevelManager;
     public MultiPlayerModeController ref_MultiPlayerModeController;
     public SetSelectionsInGamePlay ref_SetSelectionsInGamePlay;
     public SoundHandler ref_SoundController;

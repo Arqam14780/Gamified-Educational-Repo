@@ -1,0 +1,319 @@
+fileFormatVersion: 2
+guid: 06c119854e0e8c7409a6adffe1858865
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Antenna_L_1
+  - first:
+      1: 100002
+    second: Antenna_L_2
+  - first:
+      1: 100004
+    second: Antenna_R_1
+  - first:
+      1: 100006
+    second: Antenna_R_2
+  - first:
+      1: 100008
+    second: Feet_L_1
+  - first:
+      1: 100010
+    second: Feet_L_2
+  - first:
+      1: 100012
+    second: Feet_R_1
+  - first:
+      1: 100014
+    second: Feet_R_2
+  - first:
+      1: 100016
+    second: Head
+  - first:
+      1: 100018
+    second: //RootNode
+  - first:
+      1: 100020
+    second: polySurface5
+  - first:
+      1: 100022
+    second: Root
+  - first:
+      1: 100024
+    second: Tail_1
+  - first:
+      1: 100026
+    second: Tail_2
+  - first:
+      1: 100028
+    second: Wing_L_1
+  - first:
+      1: 100030
+    second: Wing_L_2
+  - first:
+      1: 100032
+    second: Wing_R_1
+  - first:
+      1: 100034
+    second: Wing_R_2
+  - first:
+      1: 100036
+    second: ButterflyMesh
+  - first:
+      1: 100038
+    second: ButterflyMeshLow
+  - first:
+      4: 400000
+    second: Antenna_L_1
+  - first:
+      4: 400002
+    second: Antenna_L_2
+  - first:
+      4: 400004
+    second: Antenna_R_1
+  - first:
+      4: 400006
+    second: Antenna_R_2
+  - first:
+      4: 400008
+    second: Feet_L_1
+  - first:
+      4: 400010
+    second: Feet_L_2
+  - first:
+      4: 400012
+    second: Feet_R_1
+  - first:
+      4: 400014
+    second: Feet_R_2
+  - first:
+      4: 400016
+    second: Head
+  - first:
+      4: 400018
+    second: //RootNode
+  - first:
+      4: 400020
+    second: polySurface5
+  - first:
+      4: 400022
+    second: Root
+  - first:
+      4: 400024
+    second: Tail_1
+  - first:
+      4: 400026
+    second: Tail_2
+  - first:
+      4: 400028
+    second: Wing_L_1
+  - first:
+      4: 400030
+    second: Wing_L_2
+  - first:
+      4: 400032
+    second: Wing_R_1
+  - first:
+      4: 400034
+    second: Wing_R_2
+  - first:
+      4: 400036
+    second: ButterflyMesh
+  - first:
+      4: 400038
+    second: ButterflyMeshLow
+  - first:
+      43: 4300000
+    second: polySurface5
+  - first:
+      43: 4300002
+    second: ButterflyMesh
+  - first:
+      43: 4300004
+    second: ButterflyMeshLow
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: polySurface5
+  - first:
+      137: 13700002
+    second: ButterflyMesh
+  - first:
+      137: 13700004
+    second: ButterflyMeshLow
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: 1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 1
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Butterfly African Monarch @butterflap(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ButterflyMesh
+      parentName: Butterfly African Monarch @butterflap(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ButterflyMeshLow
+      parentName: Butterfly African Monarch @butterflap(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: Butterfly African Monarch @butterflap(Clone)
+      position: {x: -0, y: 0.014084327, z: 0.03461189}
+      rotation: {x: 0.09072686, y: 0.7012622, z: 0.09072686, w: 0.7012622}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Root
+      position: {x: -0.09600227, y: 0, z: 0}
+      rotation: {x: -0.08366975, y: 0.431281, z: -0.38988978, w: 0.8093096}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wing_R_1
+      parentName: Root
+      position: {x: -0.013325611, y: 0.0035067396, z: 0.024087783}
+      rotation: {x: 0.40124512, y: -0.546757, z: 0.5680904, w: -0.46618935}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wing_R_2
+      parentName: Wing_R_1
+      position: {x: -0.6689745, y: 0, z: 0}
+      rotation: {x: 0.14265373, y: -0.69652474, z: 0.31177112, w: 0.63031894}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail_1
+      parentName: Root
+      position: {x: 0.06926723, y: -0.018228218, z: 0.0001853275}
+      rotation: {x: -0.42069098, y: 0.9072041, z: -0.000045429915, w: 0.000054866076}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail_2
+      parentName: Tail_1
+      position: {x: -0.29385906, y: 0, z: 0}
+      rotation: {x: 0.12830718, y: 0.9917345, z: -0.000009126798, w: -0.00007059728}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet_R_1
+      parentName: Root
+      position: {x: -0.022100706, y: -0.031172518, z: 0.032082394}
+      rotation: {x: 0.5999226, y: 0.37428987, z: 0.48491558, w: 0.51464254}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet_R_2
+      parentName: Feet_R_1
+      position: {x: -0.1543533, y: 0, z: 0}
+      rotation: {x: -0.43251804, y: -0.5593998, z: -0.27591372, w: 0.65105426}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wing_L_1
+      parentName: Root
+      position: {x: -0.013325629, y: 0.0035067163, z: -0.0240878}
+      rotation: {x: -0.40259308, y: 0.584558, z: 0.537682, w: -0.4550922}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wing_L_2
+      parentName: Wing_L_1
+      position: {x: -0.6689749, y: 0, z: 0}
+      rotation: {x: 0.6965245, y: 0.14265351, z: 0.6303193, w: -0.31177112}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet_L_1
+      parentName: Root
+      position: {x: -0.022100683, y: -0.03117252, z: -0.0320824}
+      rotation: {x: 0.3679286, y: -0.5163954, z: -0.545873, w: 0.5477108}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet_L_2
+      parentName: Feet_L_1
+      position: {x: 0.15435293, y: -0.00000032000258, z: 0}
+      rotation: {x: -0.43251804, y: -0.5593998, z: -0.27591372, w: 0.65105426}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.01
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

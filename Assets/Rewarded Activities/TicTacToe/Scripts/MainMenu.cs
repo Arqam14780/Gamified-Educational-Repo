@@ -21,15 +21,7 @@ public class MainMenu : MonoBehaviour
     private int soundVal;
     private int musicVal;
 
-    private void OnEnable()
-    {
-        Screen.orientation = ScreenOrientation.Portrait;
-    }
-    private void OnDisable()
-    {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-    }
-
+ 
     private void Start()
     {
         Time.timeScale = 1;

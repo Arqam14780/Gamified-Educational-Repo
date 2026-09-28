@@ -31,5 +31,14 @@ public class GameController : MonoBehaviour
         //}
     }
 
+    private void OnEnable()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
+    private void OnDisable()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
 
 }

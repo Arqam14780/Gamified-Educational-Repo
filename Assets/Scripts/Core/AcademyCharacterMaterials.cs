@@ -10,7 +10,7 @@ namespace AR
         public static void Prepare(GameObject character)
         {
             if(character.GetComponent<AcademyCharacterMaterials>()!=null)return;
-            character.AddComponent<AcademyCharacterMaterials>().Convert();
+            //character.AddComponent<AcademyCharacterMaterials>().Convert();
         }
         private void Convert()
         {

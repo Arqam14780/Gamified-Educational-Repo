@@ -6,6 +6,7 @@ namespace AR
 {
     public class ChildSelection : MonoBehaviour
     {
+        [SerializeField] private SoundManager soundManager;
         public GameObject[] stagePointers;
         public GameObject selectBtnPanel;
         public GameObject rewardedActivityPanel;
@@ -49,6 +50,7 @@ namespace AR
 
         public void SelectChild(int num)
         {
+            soundManager.PlayBtnSound();
             if (num < 0 || num >= children.Count) return;
             children[currentActiveChild].SetActive(false);
 
@@ -59,6 +61,7 @@ namespace AR
 
         public void Play()
         {
+            soundManager.PlayBtnSound();
             PlayerPrefs.SetInt("ChildIndex", currentActiveChild);
             PlayerPrefs.Save();
             SceneManager.LoadScene(/*"StudyRoom"*/"GamePlay");
@@ -66,21 +69,25 @@ namespace AR
 
         public void PlayTicTacToe()
         {
+            soundManager.PlayBtnSound();
             SceneManager.LoadScene("TicTacToe");
         }
 
         public void PlayDotAndBox()
         {
+            soundManager.PlayBtnSound();
             SceneManager.LoadScene("DotAndBox");
         }
 
         public void PlayActivityThird()
         {
-            SceneManager.LoadScene("TicTacToe");
+            soundManager.PlayBtnSound();
+            SceneManager.LoadScene("BirdSort");
         }
 
         public void SelectActivity(int ind)
         {
+            soundManager.PlayBtnSound();
             foreach (GameObject pointer in stagePointers) pointer.SetActive(false);
             stagePointers[ind].SetActive(true);
             PlayerPrefs.SetInt("Stage", ind + 1);

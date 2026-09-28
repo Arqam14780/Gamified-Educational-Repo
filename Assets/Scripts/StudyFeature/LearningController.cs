@@ -10,6 +10,7 @@ namespace AR
     public class LearningController : MonoBehaviour
     {
         public static LearningController Instance;
+        public SoundManager soundManager;
         public TMP_Text scoreTxt;
         public GameObject mainBg;
         public GameObject imageViewer;
@@ -77,7 +78,7 @@ namespace AR
         private float currentZoom = 1f;
         private int totalPdfPage = 1;
         private int currentPageNum = 1;
-        private Sprite[] pdfPages;
+        public Sprite[] pdfPages;
         private QuizInfo[] quizesInfo;
         private int currentQuizInd = 0;
         private Color color;
@@ -136,7 +137,7 @@ namespace AR
             mainBg.SetActive(true);
             pdfViewer.SetActive(true);
             pdfData.PdfHeadingTxt.text = txt;
-            pdfData.pdfSprite.sprite = pdfPages[currentPageNum];
+            pdfData.pdfSprite.sprite = pdfPages[currentPageNum-1];
             UpdatePdfPageNum(currentPageNum);
         }
 
@@ -144,7 +145,7 @@ namespace AR
         {
             if (currentPageNum + 1 <= totalPdfPage)
             {
-                pdfData.pdfSprite.sprite = pdfPages[currentPageNum];
+                pdfData.pdfSprite.overrideSprite = pdfPages[currentPageNum];
                 currentPageNum++;
                 UpdatePdfPageNum(currentPageNum);
             }
@@ -155,7 +156,7 @@ namespace AR
             if (currentPageNum - 1 > 0)
             {
                 currentPageNum--;
-                pdfData.pdfSprite.sprite = pdfPages[currentPageNum];
+                pdfData.pdfSprite.overrideSprite = pdfPages[currentPageNum-1];
                 UpdatePdfPageNum(currentPageNum);
             }
         }
@@ -272,6 +273,7 @@ namespace AR
 
         public void CheckQuizAns(int ansInd)
         {
+            soundManager.PlayBtnSound();
             foreach (var btns in quizData.quizAnswerBtns) btns.GetComponent<Button>().interactable = false;
 
             if ((currentQuizInd + 1) >= quizesInfo.Length)
@@ -305,6 +307,7 @@ namespace AR
 
         public void NextQuiz()
         {
+            soundManager.PlayBtnSound();
             currentQuizInd++;
             UpdateQuiz();
 
@@ -315,6 +318,7 @@ namespace AR
 
         public void ShowQuizResult()
         {
+            soundManager.PlayBtnSound();
             quizData.quizResultScreen.SetActive(true);
             if (correctQuizNum == quizesInfo.Length)
             {
@@ -334,17 +338,20 @@ namespace AR
 
         public void PlayRewardbtnClicked()
         {
+            soundManager.PlayBtnSound();
             QuizCloseBtnClicked();
             onQuizAction?.Invoke();
         }
         public void TryAgainQuiz()
         {
+            soundManager.PlayBtnSound();
             ResetQuizData();
             UpdateQuiz();
         }
 
         public void QuizCloseBtnClicked()
         {
+            soundManager.PlayBtnSound();
             ResetQuizData();
             quizViewer.SetActive(false);
             mainBg.SetActive(false);

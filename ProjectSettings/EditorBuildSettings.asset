@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rewarded Activities/DotAndBox/Scenes/DotAndBox.unity
     guid: 1b16523c261238742a53cf8e0139af48
+  - enabled: 1
+    path: Assets/Rewarded Activities/Bird Sort/Scenes/BirdSort.unity
+    guid: 1633f379a3ccd3f49ba4cde87e273a78
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
