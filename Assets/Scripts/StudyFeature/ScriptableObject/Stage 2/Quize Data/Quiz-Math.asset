@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10fbbbc828989348ac16b65d29860a5, type: 3}
+  m_Name: Quiz-Math
+  m_EditorClassIdentifier: Assembly-CSharp::AR.StudyQuizData
+  quizType: MATH / QUIZ
+  quizWait_Icon: {fileID: 21300000, guid: ceaa49d4ca8fcc7418dbfe9eaa61dcbc, type: 3}
+  quizAvail_Icon: {fileID: 21300000, guid: 1e53df563ba185b43bbf0a62529c8d60, type: 3}
+  quizInfo:
+  - name: Quiz (1) Data
+    question: 12 + 5 = ?
+    options:
+    - 16
+    - 17
+    - 18
+    - 19
+    correctAnswer: 1
+  - name: Quiz (2) Data
+    question: 18 - 6 = ?
+    options:
+    - 10
+    - 11
+    - 12
+    - 13
+    correctAnswer: 2
+  - name: Quiz (3) Data
+    question: 23 + 4 = ?
+    options:
+    - 26
+    - 27
+    - 28
+    - 29
+    correctAnswer: 1
+  - name: Quiz (4) Data
+    question: 39 - 7 = ?
+    options:
+    - 30
+    - 31
+    - 33
+    - 32
+    correctAnswer: 3

@@ -3,7 +3,8 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 
-namespace AR {
+namespace AR
+{
     public class StudyImageFrames : MonoBehaviour
     {
         [SerializeField]
@@ -17,24 +18,28 @@ namespace AR {
         void Start()
         {
             stageNum = PlayerPrefs.GetInt("Stage", 1);
-            if (imageFrames.Length > studyContent[stageNum-1].imageLessons.Length)
+            int NumOfImgContent = studyContent[stageNum - 1].imageLessons.Length;
+            if (imageFrames.Length > NumOfImgContent)
             {
                 for (int i = studyContent[stageNum - 1].imageLessons.Length; i < imageFrames.Length; i++)
                     imageFrames[i].imageFrameScreen.SetActive(false);
             }
 
-            for (int i=0; i<studyContent[stageNum - 1].imageLessons.Length; i++)
+            for (int i = 0; i < studyContent[stageNum - 1].imageLessons.Length; i++)
             {
                 imageFrames[i].imgLessonTxt.text = studyContent[stageNum - 1].imageLessons[i].lessonText;
-                imageFrames[i].imgSprite.sprite = studyContent[stageNum - 1].imageLessons[i].lessonImage;
+                imageFrames[i].imgSprite.sprite = studyContent[stageNum - 1].imageLessons[i].lessonImageIcon;
                 imageFrames[i].lessonTypeTxt.text = studyContent[stageNum - 1].imageLessons[i].lessonType;
             }
+
+            LearningController.Instance.InitializeImageProgress(NumOfImgContent);
         }
 
         public void OpenImageFrame(int frameInd)
         {
             LearningController.Instance.ViewImgData(
-                studyContent[stageNum - 1].imageLessons[frameInd].lessonText, 
+                frameInd,
+                studyContent[stageNum - 1].imageLessons[frameInd].lessonText,
                 studyContent[stageNum - 1].imageLessons[frameInd].lessonImage);
         }
 

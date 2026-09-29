@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 namespace AR
 {
@@ -26,6 +27,9 @@ namespace AR
             for (int i = 0; i < studyContent[stageNum - 1].quizzes.Length; i++)
             {
                 quizFrame[i].quizTypeTxt.text = studyContent[stageNum - 1].quizzes[i].quizType;
+                quizFrame[i].quizIconPanel.GetComponent<Image>().sprite = studyContent[stageNum - 1].quizzes[i].quizWait_Icon;
+                quizFrame[i].quizIconPanel.SetActive(true);
+                quizFrame[i].quizFrameScreen.GetComponent<Button>().enabled = false;
             }
         }
 
@@ -41,6 +45,15 @@ namespace AR
             for (int i = 0; i < quizFrame.Length; i++)
                 quizFrame[i].quizFrameScreen.SetActive(false);
         }
+
+        public void QuizAvailableNow()
+        {
+            for (int i = 0; i < studyContent[stageNum - 1].quizzes.Length; i++)
+            {
+                quizFrame[i].quizIconPanel.GetComponent<Image>().sprite = studyContent[stageNum - 1].quizzes[i].quizAvail_Icon;
+                quizFrame[i].quizFrameScreen.GetComponent<Button>().enabled = true;
+            }
+        }
     }
 
     [Serializable]
@@ -48,6 +61,7 @@ namespace AR
     {
         public string name;
         public GameObject quizFrameScreen;
+        public GameObject quizIconPanel;
         public TMP_Text quizTypeTxt;
     }
 

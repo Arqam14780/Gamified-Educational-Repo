@@ -18,7 +18,8 @@ namespace AR
         void Start()
         {
             stageNum = PlayerPrefs.GetInt("Stage", 1);
-            if (pdfFrames.Length > studyContent[stageNum - 1].pdfLessons.Length)
+            int NumOfPdfContent = studyContent[stageNum - 1].pdfLessons.Length;
+            if (pdfFrames.Length > NumOfPdfContent)
             {
                 for (int i = studyContent[stageNum - 1].pdfLessons.Length; i < pdfFrames.Length; i++)
                     pdfFrames[i].pdfFrameScreen.SetActive(false);
@@ -27,14 +28,17 @@ namespace AR
             for (int i = 0; i < studyContent[stageNum - 1].pdfLessons.Length; i++)
             {
                 pdfFrames[i].pdfLessonTxt.text = studyContent[stageNum - 1].pdfLessons[i].lessonText;
-                pdfFrames[i].pdfSprite.sprite = studyContent[stageNum - 1].pdfLessons[i].pages[0];
+                pdfFrames[i].pdfSprite.sprite = studyContent[stageNum - 1].pdfLessons[i].pdfIcon;
                 pdfFrames[i].lessonTypeTxt.text = studyContent[stageNum - 1].pdfLessons[i].lessonType;
             }
+
+            LearningController.Instance.InitializePdfProgress(NumOfPdfContent);
         }
 
         public void OpenPdfFrame(int frameInd)
         {
             LearningController.Instance.ViewPdfData(
+                frameInd,
                 studyContent[stageNum - 1].pdfLessons[frameInd].lessonText,
                 studyContent[stageNum - 1].pdfLessons[frameInd].pages);
         }

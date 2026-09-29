@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace AR
 {
     public class GameHandler : MonoBehaviour
@@ -39,6 +40,10 @@ namespace AR
             thirdPersonOrbitCam.enabled = true;
         }
 
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 
     }
 }

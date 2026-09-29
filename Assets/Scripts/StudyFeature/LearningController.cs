@@ -69,6 +69,7 @@ namespace AR
             public GameObject tryAgainBtn;
         }
 
+        public UnityEvent enableQuiz;
         [Header("Zoom Settings")]
         [SerializeField] private float zoomStep = 0.25f;
         [SerializeField] private float minZoom = 0.5f;
@@ -83,6 +84,9 @@ namespace AR
         private int currentQuizInd = 0;
         private Color color;
         private int correctQuizNum = 0;
+        private bool[] imageViewed;
+        private bool[] pdfViewed;
+        private bool[] videoViewed;
 
         private void Awake()
         {
@@ -91,12 +95,24 @@ namespace AR
         }
 
         #region ImgRelatedContent
-        public void ViewImgData(string txt, Sprite sprite)
+        public void InitializeImageProgress(int imageCount)
+        {
+            imageViewed = new bool[imageCount];
+        }
+        public void ViewImgData(int imgIndex, string txt, Sprite sprite)
         {
             mainBg.SetActive(true);
             imageViewer.SetActive(true);
             imageData.imgHeadingTxt.text = txt;
             imageData.imgSprite.sprite = sprite;
+
+            if (!imageViewed[imgIndex])
+                imageViewed[imgIndex] = true;
+
+            if (CheckStudyProgress())
+            {
+                enableQuiz?.Invoke();
+            }
         }
 
         public void ZoomInImg()
@@ -129,7 +145,11 @@ namespace AR
         #endregion
 
         #region PdfRelatedContent
-        public void ViewPdfData(string txt, Sprite[] sprite)
+        public void InitializePdfProgress(int pdfCount)
+        {
+            pdfViewed = new bool[pdfCount];
+        }
+        public void ViewPdfData(int pdfIndex, string txt, Sprite[] sprite)
         {
             totalPdfPage = sprite.Length;
             pdfPages = new Sprite[] { };
@@ -137,8 +157,16 @@ namespace AR
             mainBg.SetActive(true);
             pdfViewer.SetActive(true);
             pdfData.PdfHeadingTxt.text = txt;
-            pdfData.pdfSprite.sprite = pdfPages[currentPageNum-1];
+            pdfData.pdfSprite.sprite = pdfPages[currentPageNum - 1];
             UpdatePdfPageNum(currentPageNum);
+
+            if (!pdfViewed[pdfIndex])
+                pdfViewed[pdfIndex] = true;
+
+            if (CheckStudyProgress())
+            {
+                enableQuiz?.Invoke();
+            }
         }
 
         public void NextPage()
@@ -156,7 +184,7 @@ namespace AR
             if (currentPageNum - 1 > 0)
             {
                 currentPageNum--;
-                pdfData.pdfSprite.overrideSprite = pdfPages[currentPageNum-1];
+                pdfData.pdfSprite.overrideSprite = pdfPages[currentPageNum - 1];
                 UpdatePdfPageNum(currentPageNum);
             }
         }
@@ -225,7 +253,11 @@ namespace AR
         }
 
         #region VideoRelatedContent
-        public void PlayVideoData(string txt, VideoClip clip, string videoLessonType)
+        public void InitializeVideoProgress(int vidCount)
+        {
+            videoViewed = new bool[vidCount];
+        }
+        public void PlayVideoData(int vidIndex, string txt, VideoClip clip, string videoLessonType)
         {
             mainBg.SetActive(true);
             videoViewer.SetActive(true);
@@ -233,6 +265,14 @@ namespace AR
             videoData.videoPlayer.clip = clip;
             videoData.videoPlayer.Play();
             videoData.videoTypeTxt.text = videoLessonType;
+  
+            if (!videoViewed[vidIndex])
+                videoViewed[vidIndex] = true;
+
+            if (CheckStudyProgress())
+            {
+                enableQuiz?.Invoke();
+            }
         }
 
         public void CloseVideo()
@@ -246,6 +286,26 @@ namespace AR
             videoData.videoPlayer.targetTexture.Release();
         }
         #endregion
+
+        private bool CheckStudyProgress()
+        {
+            return AreAllViewed(imageViewed) &&
+                   AreAllViewed(pdfViewed) &&
+                   AreAllViewed(videoViewed);
+        }
+        private bool AreAllViewed(bool[] items)
+        {
+            if (items == null || items.Length == 0)
+                return true;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (!items[i])
+                    return false;
+            }
+
+            return true;
+        }
 
         #region QuizRelatedContent
         public void ViewQuizData(string headingTxt, QuizInfo[] quizInformation)
@@ -295,7 +355,7 @@ namespace AR
             else
             {
                 quizData.ansResultTxt.text = "Wrong Answer. Correct Answer is " + quizesInfo[currentQuizInd].options[quizesInfo[currentQuizInd].correctAnswer];
-                
+
                 quizData.quizAnswerBtns[ansInd].GetComponent<Image>().color = Color.red;
                 ColorUtility.TryParseHtmlString("#007100", out Color color);
                 quizData.quizAnswerBtns[quizesInfo[currentQuizInd].correctAnswer].GetComponent<Image>().color = color;

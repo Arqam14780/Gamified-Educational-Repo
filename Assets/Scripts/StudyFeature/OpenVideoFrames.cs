@@ -17,7 +17,9 @@ namespace AR
         void Start()
         {
             stageNum = PlayerPrefs.GetInt("Stage", 1);
-            if (videoFrames.Length > studyContent[stageNum - 1].videoLessons.Length)
+            int NumOfVidContent = studyContent[stageNum - 1].videoLessons.Length;
+
+            if (videoFrames.Length > NumOfVidContent)
             {
                 for (int i = studyContent[stageNum - 1].videoLessons.Length; i < videoFrames.Length; i++)
                     videoFrames[i].videoFrameScreen.SetActive(false);
@@ -29,11 +31,14 @@ namespace AR
                 videoFrames[i].videoSprite.sprite = studyContent[stageNum - 1].videoLessons[i].videoThumbnail;
                 videoFrames[i].lessonTypeTxt.text = studyContent[stageNum - 1].videoLessons[i].lessonType;
             }
+
+            LearningController.Instance.InitializeVideoProgress(NumOfVidContent);
         }
 
         public void OpenVideoFrame(int frameInd)
         {
             LearningController.Instance.PlayVideoData(
+                frameInd,
                 studyContent[stageNum - 1].videoLessons[frameInd].lessonText,
                 studyContent[stageNum - 1].videoLessons[frameInd].videoClip,
                 studyContent[stageNum - 1].videoLessons[frameInd].lessonType);
