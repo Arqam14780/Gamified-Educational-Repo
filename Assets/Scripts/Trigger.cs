@@ -20,10 +20,26 @@ namespace AR
         {
             int stageNum = PlayerPrefs.GetInt("Stage", 1);
             int sceneIndex = stageNum + SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(sceneIndex);
+            switch (stageNum)
+            {
+                case 1:
+                    LearningController.Instance.PotraitLoading.SetActive(true);
+                    LearningController.Instance.PotraitLoading.GetComponent<LoadStages>().LoadActivity(sceneIndex);
+                    break;
+                case 2:
+                    LearningController.Instance.landscapeLoading.SetActive(true);
+                    LearningController.Instance.landscapeLoading.GetComponent<LoadStages>().LoadActivity(sceneIndex);
+                    break;
+                case 3:
+                    LearningController.Instance.PotraitLoading.SetActive(true);
+                    LearningController.Instance.PotraitLoading.GetComponent<LoadStages>().LoadActivity(sceneIndex);
+                    break;
+            }
 
             if (stageNum < 3)
+            {
                 PlayerPrefs.SetInt("Stage", stageNum + 1);
+            }
             else if (PlayerPrefs.GetInt("UnlockAllStages", 0) != 1)
             {
                 PlayerPrefs.SetInt("UnlockAllStages", 1);

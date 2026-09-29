@@ -16,6 +16,9 @@ namespace AR
 
         void Awake()
         {
+            Time.timeScale = 1;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
             foreach (Transform child in this.transform)
             {
                 child.gameObject.SetActive(false);

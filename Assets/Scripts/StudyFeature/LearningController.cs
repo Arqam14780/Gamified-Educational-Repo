@@ -10,6 +10,9 @@ namespace AR
     public class LearningController : MonoBehaviour
     {
         public static LearningController Instance;
+        public GameObject landscapeLoading, PotraitLoading;
+        public GameObject visibleContent;
+        public GameObject confettiEffect;
         public SoundManager soundManager;
         public TMP_Text scoreTxt;
         public GameObject mainBg;
@@ -17,6 +20,8 @@ namespace AR
         public GameObject pdfViewer;
         public GameObject videoViewer;
         public GameObject quizViewer;
+        [HideInInspector]
+        public bool isFrameOpened = false;
         [Header("Study UI Data")]
         public ImageData imageData;
         [Space(5)]
@@ -87,11 +92,19 @@ namespace AR
         private bool[] imageViewed;
         private bool[] pdfViewed;
         private bool[] videoViewed;
+        private Camera mainCam;
+        private Canvas canvas;
 
         private void Awake()
         {
             if (!Instance)
                 Instance = this;
+        }
+
+        private void Start()
+        {
+            canvas = this.gameObject.GetComponent<Canvas>();
+            mainCam = Camera.main;
         }
 
         #region ImgRelatedContent
@@ -101,6 +114,7 @@ namespace AR
         }
         public void ViewImgData(int imgIndex, string txt, Sprite sprite)
         {
+            isFrameOpened = true;
             mainBg.SetActive(true);
             imageViewer.SetActive(true);
             imageData.imgHeadingTxt.text = txt;
@@ -136,6 +150,7 @@ namespace AR
 
         public void CloseImgData()
         {
+            isFrameOpened = false;
             mainBg.SetActive(false);
             imageViewer.SetActive(false);
             imageData.imgHeadingTxt.text = "";
@@ -151,6 +166,7 @@ namespace AR
         }
         public void ViewPdfData(int pdfIndex, string txt, Sprite[] sprite)
         {
+            isFrameOpened = true;
             totalPdfPage = sprite.Length;
             pdfPages = new Sprite[] { };
             pdfPages = sprite;
@@ -214,6 +230,7 @@ namespace AR
 
         public void ClosePdfData()
         {
+            isFrameOpened = false;
             mainBg.SetActive(false);
             pdfViewer.SetActive(false);
             pdfData.PdfHeadingTxt.text = "";
@@ -259,6 +276,7 @@ namespace AR
         }
         public void PlayVideoData(int vidIndex, string txt, VideoClip clip, string videoLessonType)
         {
+            isFrameOpened = true;
             mainBg.SetActive(true);
             videoViewer.SetActive(true);
             videoData.videoHeadingTxt.text = txt;
@@ -284,6 +302,7 @@ namespace AR
             videoData.videoPlayer.Stop();
             videoData.videoPlayer.clip = null;
             videoData.videoPlayer.targetTexture.Release();
+            isFrameOpened = false;
         }
         #endregion
 
@@ -310,6 +329,7 @@ namespace AR
         #region QuizRelatedContent
         public void ViewQuizData(string headingTxt, QuizInfo[] quizInformation)
         {
+            isFrameOpened = true;
             quizData.quizHeadingTxt.text = headingTxt;
             quizesInfo = new QuizInfo[] { };
             quizesInfo = quizInformation;
@@ -385,6 +405,11 @@ namespace AR
                 quizData.quizResultTxt.text = "You Successfully completed your quiz and got " + correctQuizNum +
                     " out of " + correctQuizNum;
                 quizData.playRewardBtn.SetActive(true);
+                visibleContent.SetActive(false);
+                confettiEffect.SetActive(true);
+                canvas.renderMode = RenderMode.ScreenSpaceCamera;
+                canvas.worldCamera = mainCam;
+
             }
             else
             {
@@ -401,6 +426,9 @@ namespace AR
             soundManager.PlayBtnSound();
             QuizCloseBtnClicked();
             onQuizAction?.Invoke();
+            visibleContent.SetActive(true);
+            confettiEffect.SetActive(false);
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         }
         public void TryAgainQuiz()
         {
@@ -411,6 +439,7 @@ namespace AR
 
         public void QuizCloseBtnClicked()
         {
+            isFrameOpened = false;
             soundManager.PlayBtnSound();
             ResetQuizData();
             quizViewer.SetActive(false);

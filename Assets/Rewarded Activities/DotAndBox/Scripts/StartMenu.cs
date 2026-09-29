@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    public GameObject loadingPanel;
     public GameObject gridSize;
     public GameObject bgTheme;
     public GameObject boxImage;
@@ -165,7 +165,8 @@ public class StartMenu : MonoBehaviour
 
     public void ExitApp()
     {
-        SceneManager.LoadScene("MainMenu");
+        GameHandler.Instance.ref_SoundController._BtnSound();
+        loadingPanel.SetActive(true);
     }
 
     public void NoExit()

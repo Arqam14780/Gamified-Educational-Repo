@@ -13,7 +13,7 @@ public class FlyBehaviour : GenericBehaviour
     public GameObject flyControl;
     public GameObject sprintBtn;
     public GameObject jumpBtn;
-    public ControlFreak2.TouchButtonSpriteAnimator flyBtn;
+    //public ControlFreak2.TouchButtonSpriteAnimator flyBtn;
     public Sprite roboSprite;
     public Sprite flyingRoboSprite;
     [HideInInspector]
@@ -36,7 +36,7 @@ public class FlyBehaviour : GenericBehaviour
 	void Update()
 	{
 		// Toggle fly by input, only if there is no overriding state or temporary transitions.
-		if (ControlFreak2.CF2Input.GetButtonDown(flyButton) && !behaviourManager.IsOverriding() 
+		if (/*ControlFreak2.CF2Input.GetButtonDown(flyButton) && */ !behaviourManager.IsOverriding() 
 			&& !behaviourManager.GetTempLockStatus(behaviourManager.GetDefaultBehaviour))
 		{
 			fly = !fly;
@@ -45,10 +45,10 @@ public class FlyBehaviour : GenericBehaviour
             jumpBtn.SetActive(!fly);
             sprintBtn.SetActive(!fly);
 
-            if (!fly)
-            flyBtn.spriteNeutral.sprite = flyingRoboSprite;
-            else
-            flyBtn.spriteNeutral.sprite = roboSprite;
+            //if (!fly)
+            //flyBtn.spriteNeutral.sprite = flyingRoboSprite;
+           // else
+            //flyBtn.spriteNeutral.sprite = roboSprite;
 
             // Force end jump transition.
             behaviourManager.UnlockTempBehaviour(behaviourManager.GetDefaultBehaviour);

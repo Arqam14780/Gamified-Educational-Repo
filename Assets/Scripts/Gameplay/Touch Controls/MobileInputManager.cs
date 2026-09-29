@@ -50,6 +50,15 @@ public class MobileInputManager : MonoBehaviour
     public void ReleaseSprint()
     {
         SprintPressed = false;
+        MoveInput = Vector2.zero;
+    }
+
+    private void Update()
+    {
+        if (SprintPressed)
+        {
+            MoveInput = new Vector2(0, 1);
+        }
     }
 
     public void ResetInput()

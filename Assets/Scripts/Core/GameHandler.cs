@@ -42,6 +42,9 @@ namespace AR
 
         public void GoToMenu()
         {
+            LearningController.Instance.soundManager.PlayBtnSound();
+            LearningController.Instance.landscapeLoading.SetActive(true);
+            LearningController.Instance.landscapeLoading.GetComponent<LoadStages>().LoadActivity(0);
             SceneManager.LoadScene("MainMenu");
         }
 

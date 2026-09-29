@@ -18,6 +18,7 @@ public class LoadingScene : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         Invoke("startnextScene", 1f);
     }
 
@@ -39,6 +40,6 @@ public class LoadingScene : MonoBehaviour
             float val = ref_Loading_Sync.progress * 100;
             ref_loadingBarText.text = (Mathf.Round(val) + " %");
         }
-
     }
+
 }

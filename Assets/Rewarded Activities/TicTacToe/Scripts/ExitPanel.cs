@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ExitPanel : MonoBehaviour
 {
-
+    public GameObject loadingPanel;
     public void ButtonClick(string btnName)
     {
         StartCoroutine(btnClick(btnName));
@@ -17,8 +16,7 @@ public class ExitPanel : MonoBehaviour
         switch (btnName)
         {
             case "Yes":
-                SceneManager.LoadScene("MainMenu");
-                //Application.Quit();
+                loadingPanel.SetActive(true);
                 break;
             case "No":
                 gameObject.SetActive(false);

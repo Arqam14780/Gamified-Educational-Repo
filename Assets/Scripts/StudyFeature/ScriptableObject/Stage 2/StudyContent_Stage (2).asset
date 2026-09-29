@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: StudyContent_Stage (2)
   m_EditorClassIdentifier: Assembly-CSharp::AR.StudyContentDatabase
   imageLessons:
-  - {fileID: 11400000, guid: 075fe9cd61c6a77418d10a1c5f5bb252, type: 2}
-  - {fileID: 11400000, guid: d6679cfb82cdec24ca64c0a1afc6eb5a, type: 2}
+  - {fileID: 11400000, guid: 06c49c51600bcc34abc8cce74e2451c2, type: 2}
+  - {fileID: 11400000, guid: b8b4af899c91d544688f51a5b01b2e99, type: 2}
   pdfLessons:
-  - {fileID: 11400000, guid: b1fff3c34fff5e141882e7352bb1060f, type: 2}
-  - {fileID: 11400000, guid: 3e2994d5b88ce4d4f8b4fe63f2d556fa, type: 2}
+  - {fileID: 11400000, guid: 87b21f5752e03eb41b69df288eb9a837, type: 2}
+  - {fileID: 11400000, guid: 3c2dcffe8d67ce24e874786fdd0e5677, type: 2}
   videoLessons:
-  - {fileID: 11400000, guid: 792249ead0361e745a4dd1164a8b1d7c, type: 2}
-  - {fileID: 11400000, guid: da44356832b3aa84ab81d88ea63c0132, type: 2}
+  - {fileID: 11400000, guid: a18f383f88bebaa459bb406ecbc2f725, type: 2}
+  - {fileID: 11400000, guid: 1fdef3235dc22b8409889733eb67505c, type: 2}
   quizzes:
-  - {fileID: 11400000, guid: 4d3a1e3e42421fd4abdc35cd6eddec61, type: 2}
+  - {fileID: 11400000, guid: f1b6666a5cd7b80408b39e87a6f92425, type: 2}

@@ -140,9 +140,6 @@ public class MainMenu : MonoBehaviour
                 singlePlayer.GetComponent<Image>().sprite = singlePlayerSprites[0];
                 multiPlayer.GetComponent<Image>().sprite = multiPlayerSprites[1];
                 break;
-            case "privacy":
-                Application.OpenURL("https://www.termsfeed.com/live/6b9a571b-8f45-4619-889f-3a06513ab0e1");
-                break;
         }
 
         yield return null;
