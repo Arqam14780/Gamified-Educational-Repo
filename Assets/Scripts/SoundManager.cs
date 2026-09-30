@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace AR {
+namespace AR
+{
     public class SoundManager : MonoBehaviour
     {
         public AudioClip btnSound;
@@ -12,7 +13,9 @@ namespace AR {
 
         public void PlayBtnSound()
         {
-            btn_AS.Play();
+            int soundFlag = PlayerPrefs.GetInt("SoundFlag", 1);
+            if (soundFlag == 1)
+                btn_AS.Play();
         }
 
     }

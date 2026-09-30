@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 namespace AR
 {
     public class GameHandler : MonoBehaviour
@@ -40,13 +40,6 @@ namespace AR
             thirdPersonOrbitCam.enabled = true;
         }
 
-        public void GoToMenu()
-        {
-            LearningController.Instance.soundManager.PlayBtnSound();
-            LearningController.Instance.landscapeLoading.SetActive(true);
-            LearningController.Instance.landscapeLoading.GetComponent<LoadStages>().LoadActivity(0);
-            SceneManager.LoadScene("MainMenu");
-        }
 
     }
 }

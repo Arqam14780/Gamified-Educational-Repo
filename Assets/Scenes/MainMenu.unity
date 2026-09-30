@@ -149,7 +149,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: a87c9d176df45e047b51240a4897182b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -471,7 +471,6 @@ GameObject:
   - component: {fileID: 86432371}
   - component: {fileID: 86432369}
   - component: {fileID: 86432370}
-  - component: {fileID: 86432372}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -553,18 +552,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!114 &86432372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86432368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
 --- !u!1 &100664544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,6 +2622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577a0745934600e45a5b13b79bb13c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR.ChildSelection
+  bgMusic: {fileID: 21147988}
   soundManager: {fileID: 1001835551}
   stagePointers:
   - {fileID: 713529049}

@@ -6,6 +6,7 @@ namespace AR
 {
     public class ChildSelection : MonoBehaviour
     {
+        [SerializeField] private AudioSource bgMusic;
         [SerializeField] private SoundManager soundManager;
         public GameObject[] stagePointers;
         public GameObject selectBtnPanel;
@@ -30,6 +31,11 @@ namespace AR
         private void OnEnable()
         {
             Screen.orientation = ScreenOrientation.LandscapeLeft;
+            float soundVal = PlayerPrefs.GetFloat("SoundValue", 0.2f);
+            bgMusic.volume = soundVal;
+
+            int musicFlag = PlayerPrefs.GetInt("MusicFlag", 1);
+            if (musicFlag != 1) bgMusic.Stop();
         }
 
         private void Start()
