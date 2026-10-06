@@ -24,7 +24,6 @@ namespace AR
             {
                 child.gameObject.SetActive(false);
                 children.Add(child.gameObject);
-                AcademyCharacterMaterials.Prepare(child.gameObject);
             }
         }
 
